@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#5b1721" />
+  <meta name="description" content="Свадебное приглашение Руслана и Сяфины — 13 сентября 2026 года." />
+  <title>Руслан & Сяфина — 13.09.2026</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+
+    :root {
+      --wine: #641b28;
+      --wine-dark: #3b1017;
+      --beige: #eadcc8;
+      --ivory: #f8f1e6;
+      --gold: #c59b5f;
+      --gold-soft: #dec69d;
+      --ink: #321d20;
+      --white: #fffaf2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--ivory);
+      font-family: "Montserrat", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--wine-dark);
+    }
+
+    .hero__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 53% center;
+      z-index: -4;
+      filter: sepia(.14) saturate(.72) contrast(1.02) brightness(.8);
+      transform: scale(1.015);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background:
+        linear-gradient(180deg, rgba(34, 11, 15, .28) 0%, rgba(44, 13, 20, .20) 37%, rgba(40, 10, 17, .88) 100%),
+        linear-gradient(90deg, rgba(79, 22, 33, .18), rgba(235, 218, 194, .04));
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      z-index: -2;
+      border: 1px solid rgba(222, 198, 157, .62);
+      pointer-events: none;
+    }
+
+    .hero__content {
+      width: min(100%, 760px);
+      padding: 86px 24px 68px;
+      text-align: center;
+      color: var(--white);
+      animation: reveal .9s ease both;
+    }
+
+    .ornament-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: var(--gold-soft);
+    }
+
+    .ornament-line::before,
+    .ornament-line::after {
+      content: "";
+      width: 64px;
+      height: 1px;
+      background: currentColor;
+      opacity: .75;
+    }
+
+    .ornament {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .hero__eyebrow {
+      margin: 0 0 22px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(18px, 4vw, 27px);
+      font-weight: 500;
+      letter-spacing: .22em;
+      color: var(--gold-soft);
+    }
+
+    .hero__names {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(70px, 18vw, 142px);
+      font-weight: 500;
+      line-height: .72;
+      letter-spacing: -.045em;
+      text-shadow: 0 9px 35px rgba(0, 0, 0, .28);
+    }
+
+    .hero__names span {
+      display: block;
+      margin: .18em 0 .12em;
+      font-size: .46em;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--gold-soft);
+      letter-spacing: 0;
+    }
+
+    .hero__date {
+      margin-top: 34px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(27px, 6vw, 38px);
+      letter-spacing: .22em;
+      color: var(--gold-soft);
+    }
+
+    .hero__button,
+    .map-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 34px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      letter-spacing: .06em;
+      transition: .25s ease;
+    }
+
+    .hero__button {
+      margin-top: 30px;
+      color: var(--white);
+      background: rgba(100, 27, 40, .86);
+      box-shadow: 0 12px 30px rgba(24, 5, 9, .24), inset 0 0 0 3px rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero__button:hover,
+    .map-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(63, 12, 22, .18);
+    }
+
+    .location {
+      position: relative;
+      padding: 78px 18px 92px;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(197, 155, 95, .12), transparent 24%),
+        linear-gradient(180deg, #fbf5eb 0%, #f3e8d7 100%);
+      overflow: hidden;
+    }
+
+    .location::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(197, 155, 95, .45);
+      pointer-events: none;
+    }
+
+    .location__inner {
+      position: relative;
+      width: min(100%, 920px);
+      margin: 0 auto;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .location__eyebrow {
+      margin: 18px 0 10px;
+      color: var(--wine);
+      font-family: "Montserrat", sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+    }
+
+    .location__title {
+      margin: 0;
+      color: var(--wine-dark);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(48px, 9vw, 84px);
+      font-weight: 500;
+      line-height: .94;
+    }
+
+    .venue-frame {
+      position: relative;
+      margin: 40px auto 32px;
+      padding: 10px;
+      border: 1px solid var(--gold);
+      background: rgba(255,255,255,.34);
+      box-shadow: 0 24px 55px rgba(78, 39, 27, .11);
+    }
+
+    .venue-frame::before,
+    .venue-frame::after {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-color: var(--gold);
+    }
+
+    .venue-frame::before {
+      left: -1px;
+      top: -1px;
+      border-left: 3px solid var(--gold);
+      border-top: 3px solid var(--gold);
+    }
+
+    .venue-frame::after {
+      right: -1px;
+      bottom: -1px;
+      border-right: 3px solid var(--gold);
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .venue-frame img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .address {
+      width: min(100%, 620px);
+      margin: 0 auto;
+      padding: 4px 12px;
+    }
+
+    .address__pin {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold);
+      font-size: 30px;
+    }
+
+    .address p {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(22px, 5vw, 31px);
+      line-height: 1.22;
+    }
+
+    .address .city {
+      margin-top: 8px;
+      color: var(--wine);
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    .map-button {
+      margin-top: 30px;
+      color: var(--white);
+      background: var(--wine);
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,.06);
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(26px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero::after {
+        inset: 9px;
+      }
+
+      .hero__content {
+        padding: 84px 20px 54px;
+      }
+
+      .hero__names {
+        font-size: clamp(65px, 20vw, 92px);
+      }
+
+      .hero__date {
+        letter-spacing: .14em;
+      }
+
+      .ornament-line::before,
+      .ornament-line::after {
+        width: 42px;
+      }
+
+      .location {
+        padding: 62px 14px 76px;
+      }
+
+      .location::before {
+        inset: 9px;
+      }
+
+      .location__title {
+        font-size: clamp(46px, 14vw, 68px);
+      }
+
+      .venue-frame {
+        margin-top: 30px;
+      }
+
+      .address p {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="hero">
+      <img class="hero__image" src="couple.webp" alt="Руслан и Сяфина" />
+
+      <div class="hero__content">
+        <div class="ornament-line">
+          <span class="ornament">❦</span>
+        </div>
+
+        <p class="hero__eyebrow">Приглашение на свадьбу</p>
+
+        <h1 class="hero__names">
+          Руслан
+          <span>&</span>
+          Сяфина
+        </h1>
+
+        <div class="hero__date">13.09.2026</div>
+
+        <div class="ornament-line" style="margin-top: 18px;">
+          <span class="ornament">∞</span>
+        </div>
+
+        <a class="hero__button" href="#location">Место проведения</a>
+      </div>
+    </section>
+
+    <section class="location" id="location">
+      <div class="location__inner">
+        <div class="ornament-line">
+          <span class="ornament">❦</span>
+        </div>
+
+        <p class="location__eyebrow">Место проведения</p>
+        <h2 class="location__title">Ресторан Prestige</h2>
+
+        <div class="venue-frame">
+          <img src="prestige.png" alt="Ресторан Prestige в Ташкенте" />
+        </div>
+
+        <div class="address">
+          <span class="address__pin">⌖</span>
+          <p>
+            массив Наккашлык, 1А<br />
+            ул. Малая кольцевая дорога<br />
+            напротив Центра грудной хирургии
+          </p>
+          <div class="city">Ташкент</div>
+        </div>
+
+        <a
+          class="map-button"
+          href="https://yandex.com/maps/org/prestige/28696167670/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Открыть на карте
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
