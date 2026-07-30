@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#5a1722" />
+  <title>Руслан & Сяфина — 13.09.2026</title>
+
+  <style>
+    :root {
+      --wine: #651c2b;
+      --wine-dark: #3c1019;
+      --cream: #f4ede3;
+      --sand: #d9c5ae;
+      --ink: #241b1b;
+      --white: #fffaf5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background: var(--cream);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background: var(--wine-dark);
+    }
+
+    .hero__photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 46%;
+      z-index: -3;
+      filter: saturate(.75) contrast(1.02);
+      transform: scale(1.01);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(180deg, rgba(23, 9, 12, .25) 0%, rgba(32, 11, 16, .15) 35%, rgba(35, 10, 17, .72) 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      z-index: -1;
+      border: 1px solid rgba(255, 250, 245, .48);
+      pointer-events: none;
+    }
+
+    .hero__content {
+      width: min(92%, 760px);
+      padding: 90px 20px 54px;
+      text-align: center;
+      color: var(--white);
+      align-self: end;
+      animation: rise .9s ease both;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: .33em;
+      text-transform: uppercase;
+      opacity: .88;
+    }
+
+    .names {
+      margin: 0;
+      font-size: clamp(52px, 13vw, 112px);
+      line-height: .86;
+      font-weight: 400;
+      letter-spacing: -.045em;
+      text-shadow: 0 8px 30px rgba(0,0,0,.26);
+    }
+
+    .names span {
+      display: block;
+      margin: .12em 0;
+      font-size: .38em;
+      font-style: italic;
+      letter-spacing: 0;
+      opacity: .85;
+    }
+
+    .date {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 30px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .date::before,
+    .date::after {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: currentColor;
+      opacity: .65;
+    }
+
+    .scroll-link {
+      display: inline-flex;
+      margin-top: 34px;
+      padding: 14px 22px;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,.08);
+      transition: .25s ease;
+    }
+
+    .scroll-link:hover {
+      background: rgba(255,255,255,.18);
+      transform: translateY(-2px);
+    }
+
+    .location {
+      position: relative;
+      padding: 90px 22px 100px;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(101, 28, 43, .09), transparent 30%),
+        var(--cream);
+      overflow: hidden;
+    }
+
+    .location__inner {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      border: 1px solid rgba(101, 28, 43, .22);
+      background: rgba(255, 250, 245, .62);
+      box-shadow: 0 24px 60px rgba(60, 16, 25, .08);
+    }
+
+    .location__label {
+      padding: 52px 44px;
+      background: var(--wine);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 430px;
+    }
+
+    .location__number {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      opacity: .72;
+    }
+
+    .location__label h2 {
+      margin: auto 0;
+      font-size: clamp(44px, 7vw, 74px);
+      font-weight: 400;
+      line-height: .95;
+    }
+
+    .location__date {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .8;
+    }
+
+    .location__content {
+      padding: 62px 54px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .location__content .kicker {
+      margin: 0 0 12px;
+      color: var(--wine);
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+    }
+
+    .location__content h3 {
+      margin: 0;
+      color: var(--wine-dark);
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .location__address {
+      margin: 28px 0 8px;
+      max-width: 510px;
+      font-size: 19px;
+      line-height: 1.6;
+    }
+
+    .location__city {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .58;
+    }
+
+    .map-button {
+      align-self: flex-start;
+      margin-top: 34px;
+      padding: 16px 24px;
+      border: 1px solid var(--wine);
+      border-radius: 999px;
+      color: var(--wine);
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: .25s ease;
+    }
+
+    .map-button:hover {
+      color: var(--white);
+      background: var(--wine);
+      transform: translateY(-2px);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero::after {
+        inset: 10px;
+      }
+
+      .hero__photo {
+        object-position: center 40%;
+      }
+
+      .hero__content {
+        width: 100%;
+        padding: 110px 26px 62px;
+      }
+
+      .names {
+        font-size: clamp(48px, 18vw, 76px);
+      }
+
+      .date {
+        gap: 10px;
+        font-size: 11px;
+      }
+
+      .date::before,
+      .date::after {
+        width: 22px;
+      }
+
+      .location {
+        padding: 62px 16px 72px;
+      }
+
+      .location__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .location__label {
+        min-height: 260px;
+        padding: 32px 28px;
+      }
+
+      .location__label h2 {
+        margin: 50px 0;
+      }
+
+      .location__content {
+        padding: 42px 28px 46px;
+      }
+
+      .location__address {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="hero" aria-label="Главный экран свадебного приглашения">
+      <img class="hero__photo" src="hero.webp" alt="Руслан и Сяфина" />
+
+      <div class="hero__content">
+        <p class="eyebrow">Приглашение на свадьбу</p>
+
+        <h1 class="names">
+          Руслан
+          <span>&</span>
+          Сяфина
+        </h1>
+
+        <div class="date">13 сентября 2026</div>
+
+        <br />
+        <a class="scroll-link" href="#location">Место проведения</a>
+      </div>
+    </section>
+
+    <section class="location" id="location">
+      <div class="location__inner">
+        <div class="location__label">
+          <div class="location__number">01 — Локация</div>
+          <h2>Ждём<br />вас</h2>
+          <div class="location__date">13 · 09 · 2026</div>
+        </div>
+
+        <div class="location__content">
+          <p class="kicker">Место проведения</p>
+          <h3>Ресторан<br />«Престиж»</h3>
+
+          <p class="location__address">
+            улица Малая Кольцевая дорога, 1А
+          </p>
+          <p class="location__city">Нальчик</p>
+
+          <a
+            class="map-button"
+            href="https://yandex.ru/maps/?text=%D0%9D%D0%B0%D0%BB%D1%8C%D1%87%D0%B8%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9C%D0%B0%D0%BB%D0%B0%D1%8F%20%D0%9A%D0%BE%D0%BB%D1%8C%D1%86%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0%2C%201%D0%90"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Открыть на карте
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
