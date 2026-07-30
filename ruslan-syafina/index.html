@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4b1420" />
+  <meta name="description" content="Свадебное приглашение Руслана и Сяфины — 13 сентября 2026 года." />
+  <title>Руслан & Сяфина — 13.09.2026</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+
+    :root {
+      --wine: #641b2a;
+      --wine-deep: #351018;
+      --ivory: #f6efe6;
+      --sand: #dfd0bd;
+      --muted: #b9aa98;
+      --ink: #2d2325;
+      --white: #fffaf3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--ivory);
+      font-family: "Montserrat", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      isolation: isolate;
+      background: #201014;
+    }
+
+    .hero__media {
+      position: absolute;
+      inset: -3%;
+      z-index: -4;
+      will-change: transform;
+      animation: heroZoom 14s ease-out both;
+    }
+
+    .hero__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 39%;
+      filter: saturate(.82) contrast(1.03) brightness(.93);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background:
+        linear-gradient(180deg, rgba(15, 7, 9, .08) 0%, rgba(21, 8, 12, .06) 44%, rgba(31, 10, 15, .72) 100%),
+        linear-gradient(90deg, rgba(39, 10, 17, .20) 0%, transparent 38%, transparent 100%);
+    }
+
+    .hero__frame {
+      position: absolute;
+      inset: 16px;
+      z-index: -2;
+      border: 1px solid rgba(246, 239, 230, .42);
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      min-height: 100svh;
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding: 36px 36px 34px 78px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr auto;
+      gap: 24px 34px;
+    }
+
+    .hero__vertical {
+      grid-row: 1 / -1;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: rgba(255,250,243,.78);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+    }
+
+    .hero__vertical::before,
+    .hero__vertical::after {
+      content: "";
+      width: 1px;
+      height: 82px;
+      margin: 18px 0;
+      background: currentColor;
+      opacity: .42;
+      transform-origin: center;
+      animation: lineGrow 1.2s .25s ease both;
+    }
+
+    .hero__top {
+      grid-column: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      color: rgba(255,250,243,.82);
+      opacity: 0;
+      animation: fadeUp .9s .25s ease forwards;
+    }
+
+    .hero__eyebrow {
+      margin: 0;
+      font-size: 10px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+
+    .hero__date {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+
+    .hero__stage {
+      grid-column: 2;
+      align-self: end;
+      padding-bottom: 26px;
+      color: var(--white);
+    }
+
+    .hero__names {
+      margin: 0;
+      width: min(100%, 960px);
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      line-height: .75;
+      letter-spacing: -.06em;
+      text-shadow: 0 10px 32px rgba(0,0,0,.20);
+    }
+
+    .hero__name {
+      display: block;
+      font-size: clamp(78px, 11vw, 154px);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: nameIn 1s ease forwards;
+    }
+
+    .hero__name--first {
+      animation-delay: .45s;
+    }
+
+    .hero__name--second {
+      margin-left: .48em;
+      animation-delay: .62s;
+    }
+
+    .hero__connector {
+      display: block;
+      width: 138px;
+      height: 1px;
+      margin: 20px 0 16px 5px;
+      background: rgba(255,250,243,.66);
+      transform-origin: left;
+      animation: lineGrowHorizontal .9s .9s ease both;
+    }
+
+    .hero__bottom {
+      grid-column: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      color: rgba(255,250,243,.84);
+      opacity: 0;
+      animation: fadeUp .9s .9s ease forwards;
+    }
+
+    .hero__scroll {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 9px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .hero__scroll::after {
+      content: "";
+      width: 46px;
+      height: 1px;
+      background: currentColor;
+      opacity: .58;
+    }
+
+    .hero__city {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 20px;
+      letter-spacing: .06em;
+    }
+
+    .invitation {
+      position: relative;
+      padding: 110px 24px 118px;
+      background:
+        linear-gradient(180deg, #f7f0e7 0%, #f2e8dc 100%);
+      overflow: hidden;
+    }
+
+    .invitation::before {
+      content: "13";
+      position: absolute;
+      right: 5vw;
+      top: -24px;
+      color: rgba(100,27,42,.035);
+      font-family: "Cormorant Garamond", serif;
+      font-size: min(35vw, 420px);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .invitation__inner {
+      position: relative;
+      width: min(100%, 920px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 54px;
+      align-items: start;
+    }
+
+    .invitation__index {
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .30em;
+      text-transform: uppercase;
+    }
+
+    .invitation__content {
+      position: relative;
+      padding-left: 34px;
+      border-left: 1px solid rgba(100,27,42,.28);
+    }
+
+    .invitation__title {
+      margin: 0 0 18px;
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+
+    .invitation__text {
+      margin: 0;
+      max-width: 720px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(34px, 5.8vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -.025em;
+    }
+
+    .invitation__signature {
+      margin-top: 28px;
+      color: rgba(45,35,37,.66);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      font-style: italic;
+    }
+
+    .location {
+      position: relative;
+      padding: 100px 24px 112px;
+      background: #ebe1d5;
+      overflow: hidden;
+    }
+
+    .location__inner {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
+      gap: 42px;
+      align-items: stretch;
+    }
+
+    .location__media {
+      position: relative;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .location__media::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255,255,255,.38);
+      pointer-events: none;
+    }
+
+    .location__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .7s ease;
+    }
+
+    .location__media:hover img {
+      transform: scale(1.025);
+    }
+
+    .location__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 54px 6px 54px 0;
+    }
+
+    .location__eyebrow {
+      margin: 0 0 18px;
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .30em;
+      text-transform: uppercase;
+    }
+
+    .location__title {
+      margin: 0;
+      color: var(--wine-dark);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(54px, 7vw, 88px);
+      font-weight: 500;
+      line-height: .90;
+      letter-spacing: -.04em;
+    }
+
+    .location__rule {
+      width: 84px;
+      height: 1px;
+      margin: 28px 0;
+      background: rgba(100,27,42,.36);
+    }
+
+    .location__address {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      line-height: 1.34;
+    }
+
+    .location__city {
+      margin-top: 12px;
+      color: rgba(45,35,37,.56);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    .map-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      min-height: 52px;
+      margin-top: 32px;
+      padding: 0 26px;
+      border: 1px solid var(--wine);
+      border-radius: 999px;
+      color: var(--wine);
+      background: transparent;
+      text-decoration: none;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 21px;
+      transition: .25s ease;
+    }
+
+    .map-button:hover {
+      color: var(--white);
+      background: var(--wine);
+      transform: translateY(-2px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.045); }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes nameIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes lineGrow {
+      from { transform: scaleY(0); }
+      to { transform: scaleY(1); }
+    }
+
+    @keyframes lineGrowHorizontal {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .hero__name,
+      .hero__top,
+      .hero__bottom,
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .hero__inner {
+        padding: 28px 20px 24px 48px;
+        grid-template-columns: auto 1fr;
+      }
+
+      .hero__vertical {
+        font-size: 8px;
+      }
+
+      .hero__vertical::before,
+      .hero__vertical::after {
+        height: 48px;
+      }
+
+      .hero__date {
+        font-size: 18px;
+      }
+
+      .hero__name {
+        font-size: clamp(60px, 17vw, 96px);
+      }
+
+      .hero__name--second {
+        margin-left: .28em;
+      }
+
+      .hero__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .invitation {
+        padding: 84px 20px 92px;
+      }
+
+      .invitation__inner {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .invitation__content {
+        padding-left: 22px;
+      }
+
+      .invitation__text {
+        font-size: clamp(34px, 10vw, 50px);
+      }
+
+      .location {
+        padding: 78px 18px 88px;
+      }
+
+      .location__inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .location__media {
+        min-height: auto;
+        aspect-ratio: 16 / 10;
+      }
+
+      .location__content {
+        padding: 0;
+      }
+
+      .map-button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero__frame {
+        inset: 9px;
+      }
+
+      .hero__image {
+        object-position: 56% 36%;
+      }
+
+      .hero__inner {
+        padding: 24px 16px 20px 38px;
+      }
+
+      .hero__top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .hero__eyebrow {
+        font-size: 8px;
+      }
+
+      .hero__date {
+        font-size: 17px;
+      }
+
+      .hero__stage {
+        padding-bottom: 12px;
+      }
+
+      .hero__name {
+        font-size: clamp(54px, 17vw, 82px);
+      }
+
+      .hero__connector {
+        width: 90px;
+        margin-top: 16px;
+        margin-bottom: 12px;
+      }
+
+      .hero__scroll {
+        font-size: 8px;
+      }
+
+      .hero__city {
+        font-size: 18px;
+      }
+
+      .invitation__text {
+        font-size: 38px;
+      }
+
+      .location__title {
+        font-size: 58px;
+      }
+
+      .location__address {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="hero">
+      <div class="hero__media" data-parallax>
+        <img class="hero__image" src="couple.webp" alt="Руслан и Сяфина" />
+      </div>
+
+      <div class="hero__frame"></div>
+
+      <div class="hero__inner">
+        <div class="hero__vertical">13 September 2026</div>
+
+        <div class="hero__top">
+          <p class="hero__eyebrow">Приглашение на свадьбу</p>
+          <div class="hero__date">13 · 09 · 2026</div>
+        </div>
+
+        <div class="hero__stage">
+          <h1 class="hero__names">
+            <span class="hero__name hero__name--first">Руслан</span>
+            <span class="hero__connector"></span>
+            <span class="hero__name hero__name--second">Сяфина</span>
+          </h1>
+        </div>
+
+        <div class="hero__bottom">
+          <a class="hero__scroll" href="#invitation">Листайте ниже</a>
+          <div class="hero__city">Ташкент</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="invitation" id="invitation">
+      <div class="invitation__inner reveal">
+        <div class="invitation__index">01 — приглашение</div>
+
+        <div class="invitation__content">
+          <p class="invitation__title">Дорогие родные и друзья</p>
+
+          <p class="invitation__text">
+            Мы будем счастливы разделить с вами один из самых важных и тёплых дней нашей жизни.
+            Приглашаем вас стать частью нашего свадебного торжества.
+          </p>
+
+          <div class="invitation__signature">Руслан и Сяфина</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="location" id="location">
+      <div class="location__inner">
+        <div class="location__media reveal">
+          <img src="prestige.png" alt="Ресторан Prestige в Ташкенте" />
+        </div>
+
+        <div class="location__content reveal">
+          <p class="location__eyebrow">Место проведения</p>
+          <h2 class="location__title">Ресторан Prestige</h2>
+
+          <div class="location__rule"></div>
+
+          <p class="location__address">
+            массив Наккашлык, 1А<br />
+            ул. Малая кольцевая дорога<br />
+            напротив Центра грудной хирургии
+          </p>
+
+          <div class="location__city">Ташкент</div>
+
+          <a
+            class="map-button"
+            href="https://yandex.com/maps/org/prestige/28696167670/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Открыть на карте
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    reveals.forEach((item) => revealObserver.observe(item));
+
+    const parallax = document.querySelector('[data-parallax]');
+
+    if (parallax && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.addEventListener(
+        'scroll',
+        () => {
+          const shift = Math.min(window.scrollY * 0.12, 70);
+          parallax.style.transform = `translate3d(0, ${shift}px, 0) scale(1.045)`;
+        },
+        { passive: true }
+      );
+    }
+  </script>
+</body>
+</html>
