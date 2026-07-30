@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Alex Invite — Digital Wedding Experience</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+
+:root{
+    --black:#0a0908;
+    --paper:#f3ede3;
+    --cream:#e8ddce;
+    --brown:#4a3325;
+    --gray:#8c8175;
+    --line:rgba(255,255,255,.12);
+}
+
+*{box-sizing:border-box}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--black);
+    color:var(--paper);
+    font-family:Inter,Arial,sans-serif;
+    overflow-x:hidden;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:0 50px;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:45px 0;
+}
+
+.logo{
+    font-size:22px;
+    letter-spacing:8px;
+    font-weight:500;
+}
+
+.header-note{
+    color:#aaa;
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+
+/* HERO */
+
+.hero{
+    min-height:95vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+
+.hero-text{
+    max-width:850px;
+    position:relative;
+    z-index:2;
+}
+
+.kicker{
+    text-transform:uppercase;
+    letter-spacing:5px;
+    color:#b7a48f;
+    font-size:12px;
+    margin-bottom:35px;
+}
+
+h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(70px,9vw,150px);
+    line-height:.85;
+    font-weight:300;
+    margin:0;
+}
+
+.hero-sub{
+    margin-top:45px;
+    max-width:500px;
+    color:#c9beb0;
+    font-size:20px;
+    line-height:1.6;
+}
+
+.hero-object{
+    position:absolute;
+    right:-100px;
+    top:100px;
+    width:600px;
+    height:750px;
+    background:
+    linear-gradient(145deg,rgba(255,255,255,.05),transparent),
+    url("assets/hero.jpg") center/cover;
+    filter:grayscale(.3);
+    border-radius:300px 300px 0 0;
+}
+
+.scroll{
+    position:absolute;
+    bottom:40px;
+    color:#8c8175;
+    letter-spacing:4px;
+    font-size:12px;
+}
+
+
+/* SECTIONS */
+
+section{
+    padding:160px 0;
+}
+
+.number{
+    color:#8c8175;
+    font-size:12px;
+    letter-spacing:5px;
+    margin-bottom:30px;
+}
+
+.title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(45px,6vw,90px);
+    font-weight:300;
+    line-height:1;
+    max-width:900px;
+}
+
+.text{
+    max-width:700px;
+    color:#c7bcaf;
+    font-size:21px;
+    line-height:1.8;
+}
+
+
+/* ORIGIN */
+
+.origin{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:100px;
+    align-items:center;
+}
+
+.author-photo{
+    height:650px;
+    background:url("assets/author.jpg") center/cover;
+    filter:grayscale(1);
+}
+
+
+/* PHILOSOPHY */
+
+.quote{
+    border-left:1px solid #806b58;
+    padding-left:40px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:55px;
+    line-height:1.2;
+    max-width:900px;
+}
+
+
+/* EXPERIENCE */
+
+.experience{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+}
+
+.item{
+    border-top:1px solid var(--line);
+    padding-top:30px;
+}
+
+.item h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:40px;
+    font-weight:300;
+}
+
+.item p{
+    color:#aaa;
+    line-height:1.7;
+}
+
+
+/* PROJECT */
+
+.project{
+    background:var(--paper);
+    color:#111;
+    border-radius:40px;
+    padding:90px;
+}
+
+.project .title{
+    color:#111;
+}
+
+.button{
+    display:inline-block;
+    margin-top:45px;
+    padding:20px 45px;
+    background:#111;
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+}
+
+
+footer{
+    padding:50px 0;
+    color:#777;
+}
+
+
+@media(max-width:900px){
+
+.container{
+    padding:0 25px;
+}
+
+.hero-object{
+    opacity:.25;
+    width:100%;
+    right:0;
+}
+
+.origin,
+.experience{
+    grid-template-columns:1fr;
+}
+
+.project{
+    padding:45px 25px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<div class="logo">ALEX INVITE</div>
+<div class="header-note">Digital Wedding Experience</div>
+</header>
+
+
+<section class="hero">
+
+<div class="hero-text">
+
+<div class="kicker">Independent digital design</div>
+
+<h1>
+Digital stories<br>
+for unforgettable<br>
+moments
+</h1>
+
+<p class="hero-sub">
+Персональные цифровые истории свадеб,
+созданные вокруг людей, эмоций и атмосферы события.
+</p>
+
+</div>
+
+<div class="hero-object"></div>
+
+<div class="scroll">SCROLL</div>
+
+</section>
+
+
+
+<section>
+
+<div class="number">01 — ORIGIN</div>
+
+<div class="origin">
+
+<div class="author-photo"></div>
+
+<div>
+<h2 class="title">
+Всё началось с собственной свадьбы.
+</h2>
+
+<p class="text">
+Перед своей свадьбой я хотел создать больше,
+чем обычное приглашение.
+</p>
+
+<p class="text">
+Так появился цифровой продукт:
+сайт, история пары, музыка, интерактив для гостей,
+помощник Richard и вся коммуникация вокруг события.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="number">02 — PHILOSOPHY</div>
+
+<div class="quote">
+Обычное приглашение сообщает информацию.
+Цифровая история создаёт эмоцию.
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="number">03 — EXPERIENCE</div>
+
+<h2 class="title">
+Не функции.
+А ощущение события.
+</h2>
+
+<div class="experience">
+
+<div class="item">
+<h3>Before</h3>
+<p>Гости начинают чувствовать атмосферу ещё до дня свадьбы.</p>
+</div>
+
+<div class="item">
+<h3>During</h3>
+<p>Вся важная информация становится частью единого опыта.</p>
+</div>
+
+<div class="item">
+<h3>After</h3>
+<p>История события остаётся сохранённой.</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="project">
+
+<div class="number">CASE 001</div>
+
+<h2 class="title">
+Alex & Victoria
+</h2>
+
+<p class="text">
+Первый проект Alex Invite.
+Реальная цифровая свадебная система,
+созданная для собственной свадьбы.
+</p>
+
+<a class="button" href="/examples/">View real project</a>
+
+</div>
+
+</section>
+
+
+<footer>
+Alex Invite © 2026
+</footer>
+
+</div>
+
+</body>
+</html>
