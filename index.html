@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Invite — персональные свадебные сайты</title>
+<meta name="description" content="Alex Invite — персональные цифровые истории для свадьбы, созданные вокруг конкретной пары.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#171310;
+  --paper:#fbf8f3;
+  --paper-2:#f1e8dc;
+  --white:#fffdfa;
+  --brown:#6b4b39;
+  --brown-dark:#3a2920;
+  --taupe:#a58f7c;
+  --muted:#716961;
+  --line:rgba(23,19,16,.14);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  overflow-x:hidden;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Inter",Arial,sans-serif;
+}
+a{color:inherit}
+.shell{
+  width:min(1320px,calc(100% - 64px));
+  margin:0 auto;
+}
+
+.site-header{
+  min-height:84px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  font-size:17px;
+  font-weight:600;
+  letter-spacing:.32em;
+}
+.header-meta{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.header-meta a{
+  text-decoration:none;
+  border-bottom:1px solid currentColor;
+  padding-bottom:3px;
+}
+
+.desktop-nav{
+  display:flex;
+  align-items:center;
+  gap:26px;
+}
+.catalog{
+  position:relative;
+}
+.catalog-trigger{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  min-height:38px;
+  padding:0;
+  border:0;
+  border-bottom:1px solid currentColor;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  font-family:"Inter",sans-serif;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.catalog-trigger::after{
+  content:"";
+  width:6px;
+  height:6px;
+  border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;
+  transform:rotate(45deg) translateY(-2px);
+  transition:transform .25s ease;
+}
+.catalog.is-open .catalog-trigger::after{
+  transform:rotate(225deg) translate(-1px,-1px);
+}
+.catalog-panel{
+  position:absolute;
+  z-index:30;
+  top:calc(100% + 14px);
+  right:0;
+  width:min(430px,calc(100vw - 48px));
+  padding:14px 22px;
+  border:1px solid var(--line);
+  background:rgba(255,253,250,.98);
+  box-shadow:0 24px 70px rgba(50,35,27,.13);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-8px);
+  transition:opacity .22s ease,transform .22s ease,visibility .22s ease;
+}
+.catalog.is-open .catalog-panel{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+}
+.catalog-item{
+  display:grid;
+  grid-template-columns:32px minmax(0,1fr) auto;
+  gap:14px;
+  align-items:center;
+  min-height:60px;
+  border-bottom:1px solid var(--line);
+  color:var(--ink);
+  text-decoration:none;
+}
+.catalog-item:last-child{border-bottom:0}
+.catalog-item span:first-child{
+  color:var(--brown);
+  font-size:9px;
+  letter-spacing:.14em;
+}
+.catalog-item strong{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
+  font-weight:400;
+  line-height:1;
+}
+.catalog-item small{
+  color:var(--muted);
+  font-size:8px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.catalog-item.is-soon{
+  cursor:default;
+}
+.catalog-item.is-soon strong{color:#675f58}
+
+.mobile-menu-button,
+.mobile-drawer,
+.mobile-menu-overlay{
+  display:none;
+}
+
+.hero{
+  display:grid;
+  display:block;
+  min-height:auto;
+  padding:82px 0 92px;
+}
+.eyebrow,
+.section-index{
+  margin:0 0 22px;
+  color:var(--brown);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.hero h1,
+.section-title,
+.philosophy-title{
+  margin:0;
+  font-family:"Cormorant Garamond",serif;
+  font-weight:400;
+  letter-spacing:-.04em;
+}
+.hero h1{
+  max-width:1120px;
+  font-size:clamp(78px,8.5vw,144px);
+  line-height:.82;
+}
+.hero h1 em{
+  color:var(--brown);
+  font-weight:400;
+}
+.hero-lead{
+  max-width:660px;
+  margin:34px 0 0;
+  color:#514a44;
+  font-size:17px;
+  line-height:1.65;
+}
+.hero-actions{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin-top:34px;
+}
+.primary-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 25px;
+  border-radius:999px;
+  background:var(--ink);
+  color:var(--white);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+.text-link{
+  font-size:11px;
+  letter-spacing:.12em;
+  text-decoration:none;
+  text-transform:uppercase;
+  border-bottom:1px solid currentColor;
+  padding-bottom:4px;
+}
+
+
+
+
+.hero-socials{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+.hero-socials a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:0 20px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:transparent;
+  color:var(--ink);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-decoration:none;
+  text-transform:uppercase;
+  transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease;
+}
+.hero-socials a:hover{
+  transform:translateY(-2px);
+  border-color:var(--ink);
+  background:var(--ink);
+  color:var(--white);
+}
+
+.hero-signature{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:44px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+  text-align:center;
+}
+.hero-signature strong{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(34px,4.2vw,58px);
+  font-weight:400;
+  letter-spacing:.04em;
+}
+.hero-signature p{
+  margin:0;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:.16em;
+  line-height:1.5;
+  text-transform:uppercase;
+}
+.section{
+  padding:92px 0;
+  border-top:1px solid var(--line);
+}
+.section.tint{background:var(--paper-2)}
+.section.dark{
+  background:var(--brown-dark);
+  color:var(--white);
+}
+.section-inner{
+  width:min(1320px,calc(100% - 64px));
+  margin:0 auto;
+}
+
+.origin-grid{
+  display:grid;
+  grid-template-columns:.65fr 1.35fr;
+  gap:72px;
+}
+.author-note{
+  max-width:250px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:42px;
+  line-height:.92;
+  color:var(--brown);
+}
+.author-note span{
+  display:block;
+  margin-top:14px;
+  font-family:"Inter",sans-serif;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.5;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.section-title{
+  font-size:clamp(54px,5.8vw,88px);
+  line-height:.94;
+}
+.origin-copy p{
+  max-width:720px;
+  margin:24px 0 0;
+  color:#595149;
+  font-size:17px;
+  line-height:1.72;
+}
+.origin-copy .accent{
+  font-family:"Cormorant Garamond",serif;
+  color:var(--brown);
+  font-size:34px;
+  line-height:1.16;
+}
+
+.philosophy-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:72px;
+  align-items:end;
+}
+.dark .section-index{color:#d7bfaa}
+.philosophy-title{
+  font-size:clamp(52px,6vw,88px);
+  line-height:.96;
+}
+.philosophy-note{
+  padding:0 0 4px 28px;
+  border-left:1px solid rgba(255,255,255,.28);
+  color:#e0d4ca;
+  font-size:16px;
+  line-height:1.68;
+}
+
+.experience-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:76px;
+  align-items:start;
+}
+.experience-list{
+  margin-top:34px;
+}
+.experience-row{
+  display:grid;
+  grid-template-columns:48px 1fr;
+  gap:20px;
+  padding:18px 0;
+  border-top:1px solid var(--line);
+}
+.experience-row:last-child{border-bottom:1px solid var(--line)}
+.experience-row span{
+  color:var(--brown);
+  font-size:10px;
+  letter-spacing:.14em;
+}
+.experience-row strong{
+  font-family:"Cormorant Garamond",serif;
+  font-size:27px;
+  font-weight:400;
+  line-height:1.05;
+}
+.experience-side{
+  padding-top:34px;
+}
+.experience-side p{
+  max-width:510px;
+  margin:0;
+  color:#5c544c;
+  font-size:17px;
+  line-height:1.72;
+}
+.experience-side .large-note{
+  margin-top:28px;
+  font-family:"Cormorant Garamond",serif;
+  color:var(--brown);
+  font-size:42px;
+  line-height:.98;
+}
+
+.projects-band{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:32px;
+  align-items:end;
+}
+.projects-band p{
+  max-width:650px;
+  margin:24px 0 0;
+  color:#5b534c;
+  font-size:16px;
+  line-height:1.7;
+}
+.project-link{
+  display:grid;
+  place-items:center;
+  width:158px;
+  height:158px;
+  border:1px solid var(--ink);
+  border-radius:50%;
+  text-align:center;
+  text-decoration:none;
+  font-size:10px;
+  line-height:1.5;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+
+
+
+
+
+.brief-section{
+  background:var(--white);
+}
+.brief-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
+  gap:78px;
+  align-items:start;
+}
+.brief-intro{
+  position:sticky;
+  top:34px;
+}
+.brief-intro p{
+  max-width:480px;
+  margin:24px 0 0;
+  color:#5b534c;
+  font-size:16px;
+  line-height:1.7;
+}
+.brief-note,
+.price-meta{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:30px;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:.14em;
+  line-height:1.5;
+  text-transform:uppercase;
+}
+.brief-note::before,
+.price-meta::before{
+  content:"";
+  flex:0 0 48px;
+  width:48px;
+  height:1px;
+  background:rgba(107,75,57,.42);
+}
+.brief-form{
+  padding:36px;
+  border:1px solid var(--line);
+  background:var(--paper);
+}
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.form-field{
+  margin-bottom:24px;
+}
+.form-field label{
+  display:block;
+  margin-bottom:10px;
+  color:var(--brown);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.form-field input,
+.form-field textarea{
+  width:100%;
+  border:0;
+  border-bottom:1px solid rgba(23,19,16,.24);
+  border-radius:0;
+  outline:none;
+  background:transparent;
+  color:var(--ink);
+  font:inherit;
+  font-size:16px;
+  line-height:1.45;
+  padding:10px 0 12px;
+  transition:border-color .25s ease;
+}
+.form-field textarea{
+  min-height:104px;
+  resize:vertical;
+}
+.form-field input:focus,
+.form-field textarea:focus{
+  border-color:var(--brown);
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder{
+  color:#9a9189;
+}
+.form-file-field{
+  padding-top:4px;
+}
+.file-control{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:54px;
+  border:1px dashed rgba(23,19,16,.28);
+  background:rgba(255,253,250,.55);
+  overflow:hidden;
+}
+.file-control input{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:0;
+  border:0;
+  opacity:0;
+  cursor:pointer;
+}
+.file-label{
+  color:var(--ink);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.field-hint{
+  margin:9px 0 0;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+}
+.form-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  margin-top:8px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+.form-consent{
+  max-width:390px;
+  margin:0;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.55;
+}
+.form-submit{
+  flex:0 0 auto;
+  min-height:52px;
+  padding:0 26px;
+  border:0;
+  border-radius:999px;
+  background:var(--ink);
+  color:var(--white);
+  cursor:pointer;
+  font-family:"Inter",sans-serif;
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  transition:transform .25s ease,background .25s ease;
+}
+.form-submit:hover{
+  transform:translateY(-2px);
+  background:var(--brown-dark);
+}
+.form-status{
+  min-height:20px;
+  margin:16px 0 0;
+  color:var(--brown);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.price-section{
+  position:relative;
+  overflow:hidden;
+  background:#efe5d8;
+  color:var(--ink);
+}
+.price-section::before{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  right:-170px;
+  top:-250px;
+  border:1px solid rgba(107,75,57,.16);
+  border-radius:50%;
+}
+.price-section::after{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  right:40px;
+  bottom:-170px;
+  border:1px solid rgba(107,75,57,.12);
+  border-radius:50%;
+}
+.price-band{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(300px,.44fr);
+  gap:70px;
+  align-items:end;
+}
+.price-copy{
+  max-width:790px;
+}
+.price-band .section-index{
+  color:var(--brown);
+}
+.price-band .section-title{
+  max-width:760px;
+}
+.price-band p{
+  max-width:660px;
+  margin:24px 0 0;
+  color:#5c524a;
+  font-size:16px;
+  line-height:1.7;
+}
+.price-meta{
+  margin-top:34px;
+}
+.price-action{
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+}
+.price-download{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  min-height:58px;
+  padding:0 28px;
+  border:1px solid var(--ink);
+  border-radius:999px;
+  background:var(--ink);
+  color:var(--white);
+  text-decoration:none;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  transition:transform .25s ease,background .25s ease,color .25s ease;
+}
+.price-download small{
+  padding-left:16px;
+  border-left:1px solid rgba(255,253,250,.34);
+  color:rgba(255,253,250,.72);
+  font-size:8px;
+  letter-spacing:.14em;
+}
+.price-download:hover{
+  transform:translateY(-2px);
+  background:transparent;
+  color:var(--ink);
+}
+.price-download:hover small{
+  border-left-color:rgba(23,19,16,.28);
+  color:var(--muted);
+}
+
+.footer{
+  padding:34px 0 40px;
+  border-top:1px solid var(--line);
+}
+.footer-row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.reveal.is-visible{
+  opacity:1;
+  transform:none;
+}
+
+
+body.menu-open{overflow:hidden}
+
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .mobile-menu-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    min-height:42px;
+    padding:0 0 0 10px;
+    border:0;
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .mobile-menu-button span{
+    width:18px;
+    height:1px;
+    background:currentColor;
+  }
+  .mobile-menu-button span:nth-child(2){display:none}
+  .mobile-menu-button b{
+    margin-left:4px;
+    font-size:9px;
+    font-weight:500;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+  }
+  .mobile-menu-overlay{
+    display:block;
+    position:fixed;
+    z-index:80;
+    inset:0;
+    background:rgba(23,19,16,.34);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .32s ease,visibility .32s ease;
+  }
+  .mobile-drawer{
+    display:flex;
+    position:fixed;
+    z-index:90;
+    top:0;
+    right:0;
+    width:min(88vw,390px);
+    height:100dvh;
+    padding:24px 22px 22px;
+    flex-direction:column;
+    background:var(--white);
+    transform:translateX(100%);
+    transition:transform .38s cubic-bezier(.22,.75,.25,1);
+    box-shadow:-24px 0 70px rgba(38,27,21,.18);
+  }
+  body.menu-open .mobile-menu-overlay{
+    opacity:1;
+    visibility:visible;
+  }
+  body.menu-open .mobile-drawer{transform:none}
+  .mobile-drawer-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-bottom:19px;
+    border-bottom:1px solid var(--line);
+    color:var(--brown);
+    font-size:9px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .mobile-menu-close{
+    width:42px;
+    height:42px;
+    margin:-10px -9px -10px 0;
+    border:0;
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    font-family:"Cormorant Garamond",serif;
+    font-size:37px;
+    font-weight:300;
+    line-height:1;
+  }
+  .mobile-drawer-nav{
+    display:flex;
+    flex-direction:column;
+    margin-top:8px;
+  }
+  .mobile-drawer-nav a,
+  .mobile-drawer-nav div{
+    display:grid;
+    grid-template-columns:28px minmax(0,1fr) auto;
+    gap:10px;
+    align-items:center;
+    min-height:78px;
+    border-bottom:1px solid var(--line);
+    color:var(--ink);
+    text-decoration:none;
+  }
+  .mobile-drawer-nav span{
+    color:var(--brown);
+    font-size:8px;
+    letter-spacing:.12em;
+  }
+  .mobile-drawer-nav strong{
+    font-family:"Cormorant Garamond",serif;
+    font-size:27px;
+    font-weight:400;
+    line-height:1.03;
+  }
+  .mobile-drawer-nav small{
+    color:var(--muted);
+    font-size:7px;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+  }
+  .mobile-drawer-nav .is-soon strong{color:#675f58}
+  .mobile-drawer-foot{
+    margin-top:auto;
+    padding-top:20px;
+    color:var(--muted);
+    font-size:8px;
+    letter-spacing:.13em;
+    line-height:1.6;
+    text-transform:uppercase;
+  }
+
+  .shell,.section-inner{
+    width:min(100% - 36px,760px);
+  }
+  .site-header{min-height:70px}
+  .logo{font-size:15px}
+  .header-meta span{display:none}
+  .hero{
+    min-height:auto;
+    padding:48px 0 58px;
+  }
+  .hero h1{
+    font-size:clamp(56px,16.5vw,82px);
+    line-height:.84;
+  }
+  .hero-lead{
+    margin-top:24px;
+    font-size:15px;
+    line-height:1.58;
+  }
+  .hero-actions{
+    margin-top:27px;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .eyebrow{
+    max-width:280px;
+    font-size:11px;
+    line-height:1.55;
+  }
+  .hero-signature{
+    margin-top:34px;
+    padding-top:20px;
+  }
+  .hero-signature strong{
+    font-size:42px;
+  }
+  .hero-signature p{
+    max-width:280px;
+    font-size:8px;
+  }
+  .section{padding:58px 0}
+  .origin-grid,
+  .philosophy-grid,
+  .experience-grid{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  .author-note{
+    font-size:37px;
+  }
+  .section-title{
+    font-size:clamp(47px,13vw,64px);
+  }
+  .origin-copy p{
+    margin-top:19px;
+    font-size:15px;
+    line-height:1.63;
+  }
+  .origin-copy .accent{
+    font-size:28px;
+  }
+  .philosophy-title{
+    font-size:clamp(45px,13vw,64px);
+  }
+  .philosophy-note{
+    padding:19px 0 0 20px;
+    font-size:15px;
+  }
+  .experience-grid{gap:24px}
+  .experience-list{margin-top:26px}
+  .experience-row{
+    grid-template-columns:40px 1fr;
+    padding:15px 0;
+  }
+  .experience-row strong{font-size:23px}
+  .experience-side{
+    padding-top:0;
+  }
+  .experience-side p{
+    font-size:15px;
+    line-height:1.62;
+  }
+  .experience-side .large-note{
+    margin-top:20px;
+    font-size:34px;
+  }
+  .projects-band{
+    grid-template-columns:1fr;
+    align-items:start;
+  }
+
+
+
+  .brief-grid{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  .brief-intro{
+    position:static;
+  }
+  .brief-form{
+    padding:24px 20px;
+  }
+  .form-row{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .form-field{
+    margin-bottom:21px;
+  }
+  .form-field input,
+  .form-field textarea{
+    font-size:15px;
+  }
+  .form-footer{
+    align-items:stretch;
+    flex-direction:column;
+    gap:18px;
+  }
+  .form-submit{
+    width:100%;
+  }
+
+  .price-band{
+    grid-template-columns:1fr;
+    gap:34px;
+  }
+  .price-band p{
+    margin-top:18px;
+    font-size:15px;
+  }
+  .price-meta{
+    margin-top:24px;
+  }
+  .price-action{
+    justify-content:flex-start;
+  }
+  .price-download{
+    width:100%;
+    min-height:56px;
+    padding:0 22px;
+  }
+  .price-section::before{
+    width:320px;
+    height:320px;
+    right:-170px;
+    top:-150px;
+  }
+  .price-section::after{
+    display:none;
+  }
+
+  .project-link{
+    width:132px;
+    height:132px;
+  }
+}
+
+@media(max-width:520px){
+  .hero h1{font-size:55px}
+  .primary-link{
+    min-height:48px;
+    padding:0 20px;
+    font-size:9px;
+  }
+  .text-link{font-size:9px}
+  .section{padding:50px 0}
+  .section-title{font-size:47px}
+  .author-note{display:none}
+  .origin-grid{gap:0}
+  .footer-row{
+    flex-direction:column;
+    gap:8px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+}
+</style>
+</head>
+
+<body>
+<header class="shell site-header">
+  <div class="logo">ALEX INVITE</div>
+
+  <nav class="desktop-nav" aria-label="Основная навигация">
+    <div class="catalog" id="catalog">
+      <button class="catalog-trigger" id="catalogTrigger" type="button" aria-expanded="false" aria-controls="catalogPanel">Каталог</button>
+      <div class="catalog-panel" id="catalogPanel">
+        <a class="catalog-item" href="#origin">
+          <span>01</span><strong>Свадебные приглашения</strong><small>Открыто</small>
+        </a>
+        <div class="catalog-item is-soon">
+          <span>02</span><strong>Приглашения на день рождения</strong><small>Скоро</small>
+        </div>
+        <div class="catalog-item is-soon">
+          <span>03</span><strong>Электронное поздравление</strong><small>Скоро</small>
+        </div>
+        <div class="catalog-item is-soon">
+          <span>04</span><strong>Предложение руки и сердца</strong><small>Скоро</small>
+        </div>
+        <div class="catalog-item is-soon">
+          <span>05</span><strong>Квест / сюрприз</strong><small>Скоро</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-meta">
+      <span>Digital wedding experience</span>
+      <a href="/examples/">Мой проект ↗</a>
+    </div>
+  </nav>
+
+  <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-expanded="false" aria-controls="mobileDrawer">
+    <span></span><span></span>
+    <b>Меню</b>
+  </button>
+</header>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="mobile-drawer-head">
+    <span>Направления</span>
+    <button class="mobile-menu-close" id="mobileMenuClose" type="button" aria-label="Закрыть меню">×</button>
+  </div>
+  <nav class="mobile-drawer-nav" aria-label="Каталог направлений">
+    <a href="#origin"><span>01</span><strong>Свадебные приглашения</strong></a>
+    <div class="is-soon"><span>02</span><strong>Приглашения на день рождения</strong><small>Скоро</small></div>
+    <div class="is-soon"><span>03</span><strong>Электронное поздравление</strong><small>Скоро</small></div>
+    <div class="is-soon"><span>04</span><strong>Предложение руки и сердца</strong><small>Скоро</small></div>
+    <div class="is-soon"><span>05</span><strong>Квест / сюрприз</strong><small>Скоро</small></div>
+  </nav>
+  <div class="mobile-drawer-foot">Alex Invite · авторский digital-проект</div>
+</aside>
+
+<main>
+  <section class="shell hero">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">Авторский свадебный digital-дизайн</p>
+      <h1>Истории,<br>которые <em>начинаются</em><br>до свадьбы.</h1>
+      <p class="hero-lead">
+        Персональные свадебные сайты, созданные вокруг вашей пары — не вокруг готового шаблона.
+      </p>
+<div class="hero-signature">
+        <strong>ALEX INVITE</strong>
+        <p>Авторский свадебный digital-проект Алексея</p>
+      </div>
+
+      <div class="hero-socials" aria-label="Социальные сети Alex Invite">
+        <a href="https://t.me/AlexInviteSpb" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://vk.ru/club240684235" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+      </div>
+    </div>
+
+
+  </section>
+
+
+  <section class="section" id="origin">
+    <div class="section-inner origin-grid">
+      <div class="reveal">
+        <div class="section-index">01 — Origin</div>
+        <div class="author-note">Алексей<span>Автор проекта Alex Invite</span></div>
+      </div>
+
+      <div class="origin-copy reveal">
+        <h2 class="section-title">Всё началось<br>с собственной свадьбы.</h2>
+        <p class="accent">Мне было мало сообщения с адресом, временем и одной фотографией.</p>
+        <p>
+          Поэтому для собственной свадьбы я создал цельную цифровую историю: сайт, музыку, анкеты, интерактив и цифрового помощника.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="section-inner philosophy-grid">
+      <div class="reveal">
+        <div class="section-index">02 — Philosophy</div>
+        <h2 class="philosophy-title">Приглашение сообщает дату.<br>История создаёт ожидание.</h2>
+      </div>
+
+      <div class="philosophy-note reveal">
+        Сначала — характер пары и атмосфера события. Дизайн появляется уже вокруг них.
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="section-inner experience-grid">
+      <div class="reveal">
+        <div class="section-index">03 — Experience</div>
+        <h2 class="section-title">Событие начинается<br>раньше самой даты.</h2>
+
+        <div class="experience-list">
+          <div class="experience-row">
+            <span>01</span>
+            <strong>Первое впечатление — личное.</strong>
+          </div>
+          <div class="experience-row">
+            <span>02</span>
+            <strong>Гости заранее чувствуют атмосферу.</strong>
+          </div>
+          <div class="experience-row">
+            <span>03</span>
+            <strong>У пары остаётся своя история.</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-side reveal">
+        <p>
+          Каждый проект начинается с пары — не с шаблона и не с набора одинаковых экранов.
+        </p>
+        <div class="large-note">Не шаблон.<br>Личное впечатление.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner projects-band">
+      <div class="reveal">
+        <div class="section-index">04 — Personal project</div>
+        <h2 class="section-title">Мой личный проект<br>Alex &amp; Victoria.</h2>
+        <p>
+          Полная свадебная digital-система, созданная для собственной свадьбы. Это самый большой формат из линейки Alex Invite.
+        </p>
+      </div>
+
+      <a class="project-link reveal" href="/examples/">
+        Смотреть<br>Alex &amp; Victoria ↗
+      </a>
+    </div>
+  </section>
+
+
+  <section class="section brief-section" id="brief">
+    <div class="section-inner brief-grid">
+      <div class="brief-intro reveal">
+        <div class="section-index">05 — Brief</div>
+        <h2 class="section-title">Расскажите<br>о вашей паре.</h2>
+        <p>
+          По этой анкете я соберу бесплатную мини-версию приглашения, чтобы вы увидели идею именно для вашей свадьбы.
+        </p>
+        <div class="brief-note">Без обязательства покупать продолжение</div>
+      </div>
+
+      <form class="brief-form reveal" id="clientBrief">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="partnerOne">Имя жениха</label>
+            <input id="partnerOne" name="partnerOne" type="text" placeholder="Алексей" required>
+          </div>
+          <div class="form-field">
+            <label for="partnerTwo">Имя невесты</label>
+            <input id="partnerTwo" name="partnerTwo" type="text" placeholder="Виктория" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="weddingDate">Дата свадьбы</label>
+            <input id="weddingDate" name="weddingDate" type="date">
+          </div>
+          <div class="form-field">
+            <label for="venue">Место проведения</label>
+            <input id="venue" name="venue" type="text" placeholder="Город, площадка или загородный комплекс">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="interests">Совместные увлечения</label>
+          <textarea id="interests" name="interests" placeholder="Путешествия, музыка, кино, спорт, любимые места, общие традиции…"></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="concept">Концепция свадьбы</label>
+          <textarea id="concept" name="concept" placeholder="Камерная, классическая, современная, загородная, вечеринка, определённая тематика…"></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="colors">Цвета и визуальное настроение</label>
+          <input id="colors" name="colors" type="text" placeholder="Молочный, чёрный, шоколадный; строго и минималистично">
+        </div>
+
+        <div class="form-field">
+          <label for="comments">Дополнительные пожелания</label>
+          <textarea id="comments" name="comments" placeholder="Расскажите всё, что поможет почувствовать вашу историю: музыка, детали знакомства, идеи или важные ограничения."></textarea>
+        </div>
+
+        <div class="form-field form-file-field">
+          <label for="visualFiles">Фотографии или примеры</label>
+          <div class="file-control">
+            <input id="visualFiles" name="visualFiles" type="file" accept="image/*,.pdf" multiple>
+            <span class="file-label">Добавить файлы</span>
+          </div>
+          <p class="field-hint">Можно приложить фотографии пары, декор, приглашения или изображения с подходящим настроением.</p>
+        </div>
+
+        <div class="form-field">
+          <label for="contact">Как с вами связаться</label>
+          <input id="contact" name="contact" type="text" placeholder="Telegram, VK или номер телефона" required>
+        </div>
+
+        <div class="form-footer">
+          <p class="form-consent">
+            Нажимая кнопку, вы передаёте данные только для подготовки персональной мини-версии.
+          </p>
+          <button class="form-submit" type="submit">Отправить анкету</button>
+        </div>
+
+        <p class="form-status" id="briefStatus" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section price-section">
+    <div class="section-inner price-band reveal">
+      <div class="price-copy">
+        <div class="section-index">06 — Продолжение</div>
+        <h2 class="section-title">Демо понравилось?<br>Его можно развить.</h2>
+        <p>
+          Бесплатная мини-версия уже может остаться вашим готовым приглашением. А если захочется добавить больше страниц, анкету гостей, музыку, интерактивного помощника или собрать полноценную свадебную экосистему — актуальные форматы и стоимость собраны в прайсе.
+        </p>
+        <div class="price-meta">Платные улучшения — только по вашему желанию</div>
+      </div>
+
+      <div class="price-action">
+        <a class="price-download" href="Alex_Invite_Price_List_Mobile.pdf" download>
+          <span>Скачать прайс</span>
+          <small>PDF</small>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="shell footer">
+  <div class="footer-row">
+    <span>Alex Invite © 2026</span>
+    <span>Авторский проект Алексея</span>
+  </div>
+</footer>
+
+<script>
+const elements = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  elements.forEach((element) => observer.observe(element));
+} else {
+  elements.forEach((element) => element.classList.add('is-visible'));
+}
+
+
+const catalog = document.getElementById('catalog');
+const catalogTrigger = document.getElementById('catalogTrigger');
+
+if (catalog && catalogTrigger) {
+  catalogTrigger.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const isOpen = catalog.classList.toggle('is-open');
+    catalogTrigger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!catalog.contains(event.target)) {
+      catalog.classList.remove('is-open');
+      catalogTrigger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      catalog.classList.remove('is-open');
+      catalogTrigger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+const mobileMenuButton = document.getElementById('mobileMenuButton');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+const mobileDrawer = document.getElementById('mobileDrawer');
+
+const setMobileMenu = (open) => {
+  document.body.classList.toggle('menu-open', open);
+  mobileMenuButton?.setAttribute('aria-expanded', String(open));
+  mobileDrawer?.setAttribute('aria-hidden', String(!open));
+};
+
+mobileMenuButton?.addEventListener('click', () => setMobileMenu(true));
+mobileMenuClose?.addEventListener('click', () => setMobileMenu(false));
+mobileMenuOverlay?.addEventListener('click', () => setMobileMenu(false));
+mobileDrawer?.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => setMobileMenu(false));
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') setMobileMenu(false);
+});
+
+const briefForm = document.getElementById('clientBrief');
+const briefStatus = document.getElementById('briefStatus');
+
+/*
+  Подключение отправки:
+  замените пустую строку на URL вашего Cloudflare Worker,
+  который принимает POST JSON.
+*/
+const BRIEF_ENDPOINT = '';
+
+briefForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  if (!briefForm.reportValidity()) return;
+
+  const data = Object.fromEntries(new FormData(briefForm).entries());
+  const submitButton = briefForm.querySelector('.form-submit');
+
+  if (!BRIEF_ENDPOINT) {
+    const briefText = [
+      'Анкета Alex Invite',
+      '',
+      `Имена: ${data.partnerOne} и ${data.partnerTwo}`,
+      `Дата свадьбы: ${data.weddingDate || 'не указана'}`,
+      `Место: ${data.venue || 'не указано'}`,
+      `Совместные увлечения: ${data.interests || 'не указаны'}`,
+      `Концепция: ${data.concept || 'не указана'}`,
+      `Цвета и настроение: ${data.colors || 'не указаны'}`,
+      `Дополнительные пожелания: ${data.comments || 'нет'}`,
+      `Файлы: ${[...briefForm.querySelector('#visualFiles').files].map(file => file.name).join(', ') || 'не приложены'}`,
+      `Контакт: ${data.contact}`
+    ].join('\n');
+
+    try {
+      await navigator.clipboard.writeText(briefText);
+      briefStatus.textContent = 'Анкета собрана и скопирована. Сейчас отправка работает в демонстрационном режиме.';
+    } catch {
+      briefStatus.textContent = 'Анкета заполнена. Для автоматической отправки нужно подключить адрес обработчика.';
+    }
+    return;
+  }
+
+  submitButton.disabled = true;
+  submitButton.textContent = 'Отправляем…';
+  briefStatus.textContent = '';
+
+  try {
+    const response = await fetch(BRIEF_ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) throw new Error('Request failed');
+
+    briefForm.reset();
+    briefStatus.textContent = 'Спасибо! Анкета отправлена. Я свяжусь с вами после подготовки идеи.';
+  } catch {
+    briefStatus.textContent = 'Не удалось отправить анкету. Попробуйте ещё раз или свяжитесь со мной напрямую.';
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = 'Отправить анкету';
+  }
+});
+</script>
+</body>
+</html>
