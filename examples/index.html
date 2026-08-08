@@ -401,6 +401,19 @@ img{max-width:100%}
   transform:none;
 }
 
+
+/* Desktop layout consistency pass */
+@media(min-width:901px){
+  .chapter-head{align-items:center}
+  .story-note{
+    grid-template-columns:1fr;
+    gap:10px;
+    width:100%;
+    max-width:520px;
+    margin:-6px 0 38px auto;
+  }
+}
+
 @media(max-width:900px){
   .shell,
   .chapter-inner,
