@@ -739,6 +739,17 @@ a{color:inherit}
 
 body.menu-open{overflow:hidden}
 
+
+/* Desktop layout consistency pass */
+@media(min-width:901px){
+  .origin-grid{align-items:center}
+  .philosophy-grid{align-items:center}
+  .experience-grid{align-items:center}
+  .projects-band{align-items:center}
+  .brief-grid{width:100%;max-width:1180px;margin-left:auto;margin-right:auto}
+  .price-band{align-items:center}
+}
+
 @media(max-width:900px){
   .section::before{width:520px;height:520px;box-shadow:inset 0 0 0 26px rgba(107,75,57,.014)}
   .section:nth-of-type(2)::before{top:-210px;right:-330px}
