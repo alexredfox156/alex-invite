@@ -739,17 +739,6 @@ a{color:inherit}
 
 body.menu-open{overflow:hidden}
 
-
-/* Desktop layout consistency pass */
-@media(min-width:901px){
-  .origin-grid{align-items:center}
-  .philosophy-grid{align-items:center}
-  .experience-grid{align-items:center}
-  .projects-band{align-items:center}
-  .brief-grid{width:100%;max-width:1180px;margin-left:auto;margin-right:auto}
-  .price-band{align-items:center}
-}
-
 @media(max-width:900px){
   .section::before{width:520px;height:520px;box-shadow:inset 0 0 0 26px rgba(107,75,57,.014)}
   .section:nth-of-type(2)::before{top:-210px;right:-330px}
@@ -1081,6 +1070,304 @@ body.menu-open{overflow:hidden}
 .bottom-socials a:first-child{background:var(--ink);border-color:var(--ink);color:var(--white)}
 .bottom-socials a:hover{transform:translateY(-2px)}
 @media(max-width:700px){.bottom-contact{padding:58px 0 54px}.bottom-contact::before{width:390px;height:390px;right:-250px;top:-230px}.bottom-socials{display:grid;grid-template-columns:1fr;max-width:340px;margin:24px auto 0}.bottom-socials a{width:100%;min-height:50px}}
+
+
+/* === Alex Invite responsive system v4 === */
+
+/* Базовая защита сеток от переполнения */
+.shell,
+.section-inner,
+.chapter-inner,
+.closing-inner{
+  width:min(1320px,calc(100% - clamp(32px,4vw,64px)));
+}
+
+.hero h1,
+.section-title,
+.philosophy-title,
+.chapter h2,
+.closing h2{
+  max-width:100%;
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:auto;
+  text-wrap:balance;
+}
+
+.hero-lead,
+.intro-copy,
+.chapter-copy,
+.story-note p,
+.services-head p,
+.contact p,
+.origin-copy p,
+.philosophy-note,
+.experience-side p,
+.projects-band p,
+.brief-intro p,
+.price-band p{
+  overflow-wrap:anywhere;
+  text-wrap:pretty;
+}
+
+.intro-grid > *,
+.approach-grid > *,
+.author-grid > *,
+.services-head > *,
+.chapter-head > *,
+.origin-grid > *,
+.philosophy-grid > *,
+.experience-grid > *,
+.projects-band > *,
+.brief-grid > *,
+.price-band > *{
+  min-width:0;
+}
+
+/* Обычный десктоп / ноутбук */
+@media(min-width:1181px){
+  .layout-readable{
+    width:min(1180px,100%);
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+/* Промежуточная зона: небольшие ноутбуки, планшет горизонтально, узкое окно браузера */
+@media(min-width:901px) and (max-width:1180px){
+  .shell,
+  .section-inner,
+  .chapter-inner,
+  .closing-inner{
+    width:min(100% - 48px,1080px);
+  }
+
+  .section{
+    padding-top:78px;
+    padding-bottom:78px;
+  }
+
+  .hero{
+    padding-top:72px;
+    padding-bottom:82px;
+  }
+
+  .hero h1{
+    font-size:clamp(64px,8.2vw,96px);
+  }
+
+  .section-title,
+  .philosophy-title,
+  .chapter h2,
+  .closing h2{
+    font-size:clamp(50px,6.2vw,72px);
+  }
+
+  .intro-grid,
+  .approach-grid,
+  .author-grid,
+  .origin-grid,
+  .philosophy-grid,
+  .experience-grid,
+  .brief-grid,
+  .chapter-head{
+    gap:48px;
+  }
+
+  .services-head,
+  .projects-band,
+  .price-band{
+    gap:40px;
+  }
+}
+
+/* Планшеты и мобильные: одна колонка и естественное заполнение ширины */
+@media(max-width:900px){
+  .shell,
+  .section-inner,
+  .chapter-inner,
+  .closing-inner{
+    width:min(100% - 36px,760px);
+  }
+
+  .hero{
+    padding-top:54px;
+    padding-bottom:66px;
+  }
+
+  .section{
+    padding-top:60px;
+    padding-bottom:60px;
+  }
+
+  .hero h1{
+    width:100%;
+    max-width:none;
+    font-size:clamp(52px,14.2vw,78px);
+    line-height:.86;
+  }
+
+  .section-title,
+  .philosophy-title,
+  .chapter h2,
+  .closing h2{
+    width:100%;
+    max-width:none;
+    font-size:clamp(43px,11.8vw,62px);
+    line-height:.94;
+  }
+
+  .hero-lead,
+  .intro-copy,
+  .chapter-copy,
+  .services-head p,
+  .contact p,
+  .origin-copy p,
+  .philosophy-note,
+  .experience-side p,
+  .projects-band p,
+  .brief-intro p,
+  .price-band p{
+    max-width:none;
+    width:100%;
+  }
+
+  .intro-grid,
+  .approach-grid,
+  .author-grid,
+  .origin-grid,
+  .philosophy-grid,
+  .experience-grid,
+  .brief-grid,
+  .chapter-head,
+  .case-preview-inner{
+    grid-template-columns:1fr !important;
+    gap:28px !important;
+    align-items:start !important;
+  }
+
+  .services-head,
+  .projects-band,
+  .price-band{
+    grid-template-columns:1fr !important;
+    gap:26px !important;
+    align-items:start !important;
+  }
+}
+
+/* Узкие смартфоны */
+@media(max-width:520px){
+  .shell,
+  .section-inner,
+  .chapter-inner,
+  .closing-inner{
+    width:calc(100% - 32px);
+  }
+
+  .hero{
+    padding-top:44px;
+    padding-bottom:54px;
+  }
+
+  .section{
+    padding-top:50px;
+    padding-bottom:50px;
+  }
+
+  .hero h1{
+    font-size:clamp(46px,13.5vw,58px);
+    line-height:.88;
+  }
+
+  .section-title,
+  .philosophy-title,
+  .chapter h2,
+  .closing h2{
+    font-size:clamp(40px,11.7vw,50px);
+    line-height:.96;
+  }
+
+  .hero-lead,
+  .intro-copy,
+  .chapter-copy,
+  .services-head p,
+  .contact p,
+  .origin-copy p,
+  .philosophy-note,
+  .experience-side p,
+  .projects-band p,
+  .brief-intro p,
+  .price-band p{
+    font-size:15px;
+    line-height:1.62;
+  }
+}
+
+@media(min-width:901px){
+  .origin-grid,
+  .philosophy-grid,
+  .experience-grid,
+  .projects-band,
+  .brief-grid,
+  .price-band{
+    width:min(1180px,100%);
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .origin-grid,
+  .philosophy-grid,
+  .experience-grid,
+  .projects-band,
+  .price-band{
+    align-items:center;
+  }
+
+  .brief-grid{
+    grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
+    align-items:start;
+  }
+}
+
+@media(min-width:901px) and (max-width:1180px){
+  .origin-grid{
+    grid-template-columns:minmax(190px,.55fr) minmax(0,1.45fr);
+  }
+
+  .philosophy-grid{
+    grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);
+  }
+
+  .experience-grid{
+    grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);
+  }
+
+  .brief-grid{
+    grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr);
+  }
+
+  .price-band{
+    grid-template-columns:minmax(0,1fr) minmax(260px,.4fr);
+  }
+}
+
+@media(max-width:900px){
+  .brief-intro{
+    position:static;
+  }
+
+  .projects-band{
+    display:grid;
+  }
+
+  .price-action{
+    justify-content:flex-start;
+  }
+
+  .brief-form{
+    width:100%;
+  }
+}
 
 </style>
 </head>
