@@ -1898,6 +1898,86 @@ body.menu-open {
 </style>
 </head>
 <body>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=111431990","ym");
+
+ym(111431990,"init",{
+  ssr:true,
+  webvisor:true,
+  clickmap:true,
+  ecommerce:"dataLayer",
+  accurateTrackBounce:true,
+  trackLinks:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/111431990" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Alex Invite analytics events -->
+<script>
+window.aiMetrikaGoal = function(goal, params) {
+  try {
+    if (typeof window.ym === 'function') {
+      window.ym(111431990, 'reachGoal', goal, params || {});
+    }
+  } catch (_) {}
+};
+
+document.addEventListener('click', function(event) {
+  const link = event.target.closest('a[href]');
+  if (!link) return;
+
+  const rawHref = link.getAttribute('href') || '';
+  const page = window.location.pathname;
+
+  if (rawHref.includes('t.me/AlexInviteSpb')) {
+    window.aiMetrikaGoal('telegram_click', { page: page });
+    return;
+  }
+
+  if (rawHref.includes('vk.ru/alexinvite')) {
+    window.aiMetrikaGoal('vk_click', { page: page });
+    return;
+  }
+
+  if (link.classList.contains('price-download')) {
+    window.aiMetrikaGoal('price_download', { page: page, file: rawHref });
+    return;
+  }
+
+  let pathname = '';
+  try {
+    pathname = new URL(link.href, window.location.href).pathname;
+  } catch (_) {
+    return;
+  }
+
+  const serviceGoals = {
+    '/wedding-invitations/': 'service_wedding',
+    '/wedding-invitations/index.html': 'service_wedding',
+    '/birthday-invitations/': 'service_birthday',
+    '/birthday-invitations/index.html': 'service_birthday',
+    '/digital-greeting/': 'service_greeting',
+    '/digital-greeting/index.html': 'service_greeting',
+    '/proposal/': 'service_proposal',
+    '/proposal/index.html': 'service_proposal',
+    '/surprise-quest/': 'service_quest',
+    '/surprise-quest/index.html': 'service_quest'
+  };
+
+  const goal = serviceGoals[pathname];
+  if (goal) {
+    window.aiMetrikaGoal(goal, { page: page, destination: pathname });
+  }
+});
+</script>
+<!-- /Alex Invite analytics events -->
+
 <header class="ai-nav-header">
   <a class="ai-nav-logo" href="/" aria-label="Alex Invite — главная">
     ALEX INVITE
@@ -2426,6 +2506,8 @@ briefForm?.addEventListener('submit', async (event) => {
     if (!response.ok || !result.ok) {
       throw new Error(result.error || 'Не удалось отправить анкету');
     }
+    window.aiMetrikaGoal('form_submit', { form: 'wedding', page: window.location.pathname });
+    window.aiMetrikaGoal('form_wedding', { page: window.location.pathname });
     briefForm.reset();     briefStatus.textContent = files.length       ? `Спасибо! Анкета и ${files.length} файл(а) отправлены. Я свяжусь с вами после подготовки идеи.`       : 'Спасибо! Анкета отправлена. Я свяжусь с вами после подготовки идеи.';
   }
   catch (error) {
