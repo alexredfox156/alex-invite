@@ -2177,7 +2177,7 @@ document.addEventListener('keydown',e=> {
 );
 const contactForm=document.getElementById('contactForm');
 const contactStatus=document.getElementById('contactStatus');
-const CONTACT_ENDPOINT='https://functions.yandexcloud.net/d4empna8i76pk3ts31lt';
+const CONTACT_ENDPOINT='https://alex-invite-telegram-proxy.alexredfox156.workers.dev/submit';
 contactForm?.addEventListener('submit',async(event)=> {
   event.preventDefault();   if(!contactForm.reportValidity()) return;    const button=contactForm.querySelector('.contact-submit');   if(button.disabled) return;    const formData=new FormData(contactForm);   const payload= {
     name:String(formData.get('clientName')||'').trim(),     event:String(formData.get('eventType')||'').trim(),     contact:String(formData.get('contactValue')||'').trim(),     idea:String(formData.get('requestText')||'').trim()

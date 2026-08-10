@@ -2479,7 +2479,7 @@ document.addEventListener('keydown', (event) => {
 );
 const briefForm = document.getElementById('clientBrief');
 const briefStatus = document.getElementById('briefStatus');
-const BRIEF_ENDPOINT = 'https://functions.yandexcloud.net/d4empna8i76pk3ts31lt';
+const BRIEF_ENDPOINT = 'https://alex-invite-telegram-proxy.alexredfox156.workers.dev/submit';
 let briefSubmitting = false;
 briefForm?.addEventListener('submit', async (event) => {
   event.preventDefault();    if (briefSubmitting || !briefForm.reportValidity()) return;    const submitButton = briefForm.querySelector('.form-submit');   const files = [...briefForm.querySelector('#visualFiles').files];   const maxFiles = 5;   const maxFileSize = 5 * 1024 * 1024;   const maxTotalSize = 15 * 1024 * 1024;   const allowedTypes = new Set([     'image/jpeg',     'image/png',     'image/webp',     'image/heic',     'image/heif',     'application/pdf'   ]);    if (files.length > maxFiles) {

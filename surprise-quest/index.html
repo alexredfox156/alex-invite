@@ -2391,7 +2391,7 @@ casePreviewButton?.addEventListener('click',()=> {
 );
 const contactForm=document.getElementById('contactForm');
 const contactStatus=document.getElementById('contactStatus');
-const CONTACT_ENDPOINT='https://functions.yandexcloud.net/d4empna8i76pk3ts31lt';
+const CONTACT_ENDPOINT='https://alex-invite-telegram-proxy.alexredfox156.workers.dev/submit';
 contactForm?.addEventListener('submit',async(event)=> {
   event.preventDefault();   if(!contactForm.reportValidity()) return;    const button=contactForm.querySelector('.contact-submit');   if(button.disabled) return;    const formData=new FormData(contactForm);   const payload= {
     name:String(formData.get('clientName')||'').trim(),     event:'Квест / сюрприз',     contact:String(formData.get('contactValue')||'').trim(),     idea:[       'Для кого: '+String(formData.get('recipient')||'').trim(),       'Повод: '+String(formData.get('occasion')||'').trim(),       'Возраст: '+String(formData.get('age')||'').trim(),       'Интересы: '+String(formData.get('interests')||'').trim(),       'Финал: '+String(formData.get('finale')||'').trim()     ].filter(Boolean).join('\n')
