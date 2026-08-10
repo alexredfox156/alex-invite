@@ -1587,6 +1587,12 @@ button {
     font-size: 12px;
     letter-spacing: 0.22em;
   }
+  .ai-nav-drawer-home {
+    color: inherit;
+    text-decoration: none;
+    font: inherit;
+    letter-spacing: inherit;
+  }
 
   .ai-nav-drawer-close {
     width: 38px;
@@ -1649,91 +1655,6 @@ button {
 </style>
 </head>
 <body>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-(function(m,e,t,r,i,k,a){
-    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    for (var j = 0; j < document.scripts.length; j++) {
-        if (document.scripts[j].src === r) { return; }
-    }
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-})(window, document,'script','https://mc.webvisor.org/metrika/tag_ww.js?id=111431990', 'ym');
-
-ym(111431990, 'init', {
-    ssr:true,
-    webvisor:true,
-    clickmap:true,
-    ecommerce:"dataLayer",
-    referrer: document.referrer,
-    url: location.href,
-    accurateTrackBounce:true,
-    trackLinks:true
-});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/111431990" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-
-<!-- Alex Invite analytics events -->
-<script>
-window.aiMetrikaGoal = function(goal, params) {
-  try {
-    if (typeof window.ym === 'function') {
-      window.ym(111431990, 'reachGoal', goal, params || {});
-    }
-  } catch (_) {}
-};
-
-document.addEventListener('click', function(event) {
-  const link = event.target.closest('a[href]');
-  if (!link) return;
-
-  const rawHref = link.getAttribute('href') || '';
-  const page = window.location.pathname;
-
-  if (rawHref.includes('t.me/AlexInviteSpb')) {
-    window.aiMetrikaGoal('telegram_click', { page: page });
-    return;
-  }
-
-  if (rawHref.includes('vk.ru/alexinvite')) {
-    window.aiMetrikaGoal('vk_click', { page: page });
-    return;
-  }
-
-  if (link.classList.contains('price-download')) {
-    window.aiMetrikaGoal('price_download', { page: page, file: rawHref });
-    return;
-  }
-
-  let pathname = '';
-  try {
-    pathname = new URL(link.href, window.location.href).pathname;
-  } catch (_) {
-    return;
-  }
-
-  const serviceGoals = {
-    '/wedding-invitations/': 'service_wedding',
-    '/wedding-invitations/index.html': 'service_wedding',
-    '/birthday-invitations/': 'service_birthday',
-    '/birthday-invitations/index.html': 'service_birthday',
-    '/digital-greeting/': 'service_greeting',
-    '/digital-greeting/index.html': 'service_greeting',
-    '/proposal/': 'service_proposal',
-    '/proposal/index.html': 'service_proposal',
-    '/surprise-quest/': 'service_quest',
-    '/surprise-quest/index.html': 'service_quest'
-  };
-
-  const goal = serviceGoals[pathname];
-  if (goal) {
-    window.aiMetrikaGoal(goal, { page: page, destination: pathname });
-  }
-});
-</script>
-<!-- /Alex Invite analytics events -->
-
 <header class="ai-nav-header">
   <a class="ai-nav-logo" href="/" aria-label="Alex Invite — главная">
     ALEX INVITE
@@ -1804,7 +1725,7 @@ document.addEventListener('click', function(event) {
   aria-hidden="true"
 >
   <div class="ai-nav-drawer-head">
-    <strong>ALEX INVITE</strong>
+    <a class="ai-nav-drawer-home" href="/">ALEX INVITE</a>
 
     <button
       class="ai-nav-drawer-close"
@@ -2029,96 +1950,39 @@ document.addEventListener('click', function(event) {
 </section>
 <section class="section contact" id="contact">
 <div class="section-inner reveal">
-<div class="section-index">
-      04 — Заявка
-     </div>
-<h2 class="section-title">
-      Оставьте контакт.
-      <br/>
-      Остальное обсудим лично.
-     </h2>
-<p>
-      Без длинной анкеты: имя, повод и удобный способ связи. Я напишу вам лично и спокойно разберусь в задаче.
-     </p>
+<div class="section-index">04 — Заявка</div>
+<h2 class="section-title">Оставьте контакт.<br/>Остальное обсудим лично.</h2>
+<p>Без длинной анкеты: имя, повод и удобный способ связи. Я напишу вам лично и спокойно разберусь в задаче.</p>
 <div class="contact-form-wrap">
 <form class="contact-form" id="contactForm">
 <div class="contact-field">
-<label for="clientName">
-         Как вас зовут
-        </label>
+<label for="clientName">Как вас зовут</label>
 <input id="clientName" name="clientName" placeholder="Ваше имя" required="" type="text"/>
 </div>
 <div class="contact-field">
-<label for="eventType">
-         Какое событие
-        </label>
-<select id="eventType" name="eventType" required="">
-<option disabled="" selected="" value="">
-          Выберите событие
-         </option>
-<option>
-          Свадьба
-         </option>
-<option>
-          День рождения
-         </option>
-<option>
-          Электронное поздравление
-         </option>
-<option>
-          Предложение руки и сердца
-         </option>
-<option>
-          Квест / сюрприз
-         </option>
-<option>
-          Другой повод
-         </option>
-</select>
+<label for="eventType">Что планируется</label>
+<input id="eventType" name="eventType" placeholder="Свадьба, день рождения, сюрприз…" required="" type="text"/>
 </div>
 <div class="contact-field full">
-<label for="contactValue">
-         Как с вами связаться
-        </label>
+<label for="contactValue">Как с вами связаться</label>
 <input id="contactValue" name="contactValue" placeholder="Telegram, ВКонтакте или номер телефона" required="" type="text"/>
 </div>
 <div class="contact-submit-row">
-<p class="contact-note">
-         Нажимая кнопку, вы передаёте данные только для связи по вашей заявке.
-        </p>
-<button class="contact-submit" type="submit">
-         Отправить заявку
-        </button>
+<p class="contact-note">Нажимая кнопку, вы передаёте данные только для связи по вашей заявке.</p>
+<button class="contact-submit" type="submit">Отправить заявку</button>
 </div>
-<p aria-live="polite" class="contact-status" id="contactStatus">
-</p>
+<p aria-live="polite" class="contact-status" id="contactStatus"></p>
 </form>
 </div>
 <div class="direct-contact">
-<p>
-       Или напишите мне напрямую
-      </p>
+<p>Или напишите мне напрямую</p>
 <div aria-label="Социальные сети Alex Invite" class="social-links">
 <a aria-label="Telegram" class="social-link" href="https://t.me/AlexInviteSpb" rel="noopener noreferrer" target="_blank" title="Telegram">
-<svg aria-hidden="true" class="social-icon social-icon-telegram" viewBox="0 0 24 24">
-<path d="M21.4 3.4 2.9 10.5c-1.3.5-1.3 1.2-.2 1.6l4.7 1.5 1.8 5.5c.2.7.1 1 .8 1 .5 0 .8-.2 1.1-.5l2.6-2.5 5.4 4c1 .5 1.7.2 1.9-.9l3.1-14.9c.3-1.4-.5-2.5-1.7-1.9ZM9 13.2l9.2-5.8c.5-.3.9-.1.6.2l-7.6 6.9-.3 3.5L9 13.2Z">
-</path>
-</svg>
-<span class="visually-hidden">
-         Telegram
-        </span>
+<svg aria-hidden="true" class="social-icon social-icon-telegram" viewBox="0 0 24 24"><path d="M21.4 3.4 2.9 10.5c-1.3.5-1.3 1.2-.2 1.6l4.7 1.5 1.8 5.5c.2.7.1 1 .8 1 .5 0 .8-.2 1.1-.5l2.6-2.5 5.4 4c1 .5 1.7.2 1.9-.9l3.1-14.9c.3-1.4-.5-2.5-1.7-1.9ZM9 13.2l9.2-5.8c.5-.3.9-.1.6.2l-7.6 6.9-.3 3.5L9 13.2Z"></path></svg><span class="visually-hidden">Telegram</span>
 </a>
 <a aria-label="ВКонтакте" class="social-link" href="https://vk.ru/alexinvite" rel="noopener noreferrer" target="_blank" title="ВКонтакте">
-<svg aria-hidden="true" class="social-icon social-icon-vk" viewBox="0 0 24 24">
-<path d="M3.3 6.8h3.2c.2 0 .4.1.5.4.7 2.1 1.8 4 3.3 5.5.2.2.4.3.5.2.2-.1.2-.4.2-.8V7.6c0-.6-.1-.8-.6-1.1-.2-.1-.1-.4.2-.5.6-.2 1.7-.3 2.8-.3 1 0 1.2.2 1.2 1v5c0 .5.2.7.4.8.2 0 .4-.1.7-.4 1.4-1.6 2.4-3.5 2.9-5 .1-.3.3-.4.6-.4h3.2c.7 0 .9.3.7.8-.7 1.8-2.3 4-3.4 5.3-.3.4-.3.6 0 1 1 1 2.1 2 2.9 3.2.5.7.2 1.2-.5 1.2h-3c-.5 0-.7-.2-1-.6-.7-.9-1.4-1.7-2.2-2.4-.3-.3-.6-.3-.8-.2-.3.2-.4.5-.4.9v1.4c0 .5-.2.9-.9.9h-1.4c-2.2 0-4.6-1.3-6.6-3.7C4.8 12.6 3.4 10 2.7 7.6c-.2-.5.1-.8.6-.8Z">
-</path>
-</svg>
-<span class="visually-hidden">
-         ВКонтакте
-        </span>
+<svg aria-hidden="true" class="social-icon social-icon-vk" viewBox="0 0 24 24"><path d="M3.3 6.8h3.2c.2 0 .4.1.5.4.7 2.1 1.8 4 3.3 5.5.2.2.4.3.5.2.2-.1.2-.4.2-.8V7.6c0-.6-.1-.8-.6-1.1-.2-.1-.1-.4.2-.5.6-.2 1.7-.3 2.8-.3 1 0 1.2.2 1.2 1v5c0 .5.2.7.4.8.2 0 .4-.1.7-.4 1.4-1.6 2.4-3.5 2.9-5 .1-.3.3-.4.6-.4h3.2c.7 0 .9.3.7.8-.7 1.8-2.3 4-3.4 5.3-.3.4-.3.6 0 1 1 1 2.1 2 2.9 3.2.5.7.2 1.2-.5 1.2h-3c-.5 0-.7-.2-1-.6-.7-.9-1.4-1.7-2.2-2.4-.3-.3-.6-.3-.8-.2-.3.2-.4.5-.4.9v1.4c0 .5-.2.9-.9.9h-1.4c-2.2 0-4.6-1.3-6.6-3.7C4.8 12.6 3.4 10 2.7 7.6c-.2-.5.1-.8.6-.8Z"></path></svg><span class="visually-hidden">ВКонтакте</span>
 </a>
-
-
 </div>
 </div>
 </div>
@@ -2171,7 +2035,7 @@ document.addEventListener('keydown',e=> {
 );
 const contactForm=document.getElementById('contactForm');
 const contactStatus=document.getElementById('contactStatus');
-const CONTACT_ENDPOINT='https://alex-invite-telegram-proxy.alexredfox156.workers.dev/submit';
+const CONTACT_ENDPOINT='https://functions.yandexcloud.net/d4empna8i76pk3ts31lt';
 contactForm?.addEventListener('submit',async(event)=> {
   event.preventDefault();   if(!contactForm.reportValidity()) return;    const button=contactForm.querySelector('.contact-submit');   if(button.disabled) return;    const formData=new FormData(contactForm);   const payload= {
     name:String(formData.get('clientName')||'').trim(),     event:String(formData.get('eventType')||'').trim(),     contact:String(formData.get('contactValue')||'').trim(),     idea:''
@@ -2193,8 +2057,6 @@ contactForm?.addEventListener('submit',async(event)=> {
     if(!response.ok||result.ok===false) {
       throw new Error(result.error||'Не удалось отправить заявку');
     }
-    window.aiMetrikaGoal('form_submit', { form: 'main', page: window.location.pathname });
-    window.aiMetrikaGoal('form_main', { page: window.location.pathname });
     contactForm.reset();     contactStatus.textContent='Спасибо! Заявка отправлена — я свяжусь с вами лично.';
   }
   catch(error) {

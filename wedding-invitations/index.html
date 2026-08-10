@@ -1836,6 +1836,12 @@ body.menu-open {
     font-size: 12px;
     letter-spacing: 0.22em;
   }
+  .ai-nav-drawer-home {
+    color: inherit;
+    text-decoration: none;
+    font: inherit;
+    letter-spacing: inherit;
+  }
 
   .ai-nav-drawer-close {
     width: 38px;
@@ -1898,91 +1904,6 @@ body.menu-open {
 </style>
 </head>
 <body>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-(function(m,e,t,r,i,k,a){
-    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    for (var j = 0; j < document.scripts.length; j++) {
-        if (document.scripts[j].src === r) { return; }
-    }
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-})(window, document,'script','https://mc.webvisor.org/metrika/tag_ww.js?id=111431990', 'ym');
-
-ym(111431990, 'init', {
-    ssr:true,
-    webvisor:true,
-    clickmap:true,
-    ecommerce:"dataLayer",
-    referrer: document.referrer,
-    url: location.href,
-    accurateTrackBounce:true,
-    trackLinks:true
-});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/111431990" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-
-<!-- Alex Invite analytics events -->
-<script>
-window.aiMetrikaGoal = function(goal, params) {
-  try {
-    if (typeof window.ym === 'function') {
-      window.ym(111431990, 'reachGoal', goal, params || {});
-    }
-  } catch (_) {}
-};
-
-document.addEventListener('click', function(event) {
-  const link = event.target.closest('a[href]');
-  if (!link) return;
-
-  const rawHref = link.getAttribute('href') || '';
-  const page = window.location.pathname;
-
-  if (rawHref.includes('t.me/AlexInviteSpb')) {
-    window.aiMetrikaGoal('telegram_click', { page: page });
-    return;
-  }
-
-  if (rawHref.includes('vk.ru/alexinvite')) {
-    window.aiMetrikaGoal('vk_click', { page: page });
-    return;
-  }
-
-  if (link.classList.contains('price-download')) {
-    window.aiMetrikaGoal('price_download', { page: page, file: rawHref });
-    return;
-  }
-
-  let pathname = '';
-  try {
-    pathname = new URL(link.href, window.location.href).pathname;
-  } catch (_) {
-    return;
-  }
-
-  const serviceGoals = {
-    '/wedding-invitations/': 'service_wedding',
-    '/wedding-invitations/index.html': 'service_wedding',
-    '/birthday-invitations/': 'service_birthday',
-    '/birthday-invitations/index.html': 'service_birthday',
-    '/digital-greeting/': 'service_greeting',
-    '/digital-greeting/index.html': 'service_greeting',
-    '/proposal/': 'service_proposal',
-    '/proposal/index.html': 'service_proposal',
-    '/surprise-quest/': 'service_quest',
-    '/surprise-quest/index.html': 'service_quest'
-  };
-
-  const goal = serviceGoals[pathname];
-  if (goal) {
-    window.aiMetrikaGoal(goal, { page: page, destination: pathname });
-  }
-});
-</script>
-<!-- /Alex Invite analytics events -->
-
 <header class="ai-nav-header">
   <a class="ai-nav-logo" href="/" aria-label="Alex Invite — главная">
     ALEX INVITE
@@ -2053,7 +1974,7 @@ document.addEventListener('click', function(event) {
   aria-hidden="true"
 >
   <div class="ai-nav-drawer-head">
-    <strong>ALEX INVITE</strong>
+    <a class="ai-nav-drawer-home" href="/">ALEX INVITE</a>
 
     <button
       class="ai-nav-drawer-close"
@@ -2240,57 +2161,25 @@ document.addEventListener('click', function(event) {
 <section class="section brief-section" id="brief">
 <div class="section-inner brief-grid">
 <div class="brief-intro reveal">
-<div class="section-index">
-       05 — Заявка
-      </div>
-<h2 class="section-title">
-       Оставьте контакт.
-       <br/>
-       Остальное обсудим лично.
-      </h2>
-<p>
-       Не нужно заполнять длинную анкету. Напишите, как вас зовут и где с вами связаться — детали свадьбы я уточню уже в переписке.
-      </p>
-<div class="brief-note">
-       Первый шаг — просто начать диалог
-      </div>
+<div class="section-index">05 — Заявка</div>
+<h2 class="section-title">Оставьте контакт.<br/>Остальное обсудим лично.</h2>
+<p>Не нужно заполнять длинную анкету. Напишите, как вас зовут и где с вами связаться — детали свадьбы я уточню уже в переписке.</p>
+<div class="brief-note">Первый шаг — просто начать диалог</div>
 </div>
 <form class="brief-form reveal" id="clientBrief">
 <div class="form-field">
-<label for="clientName">
-        Как вас зовут
-       </label>
+<label for="clientName">Как вас зовут</label>
 <input id="clientName" name="clientName" placeholder="Ваше имя" required="" type="text"/>
 </div>
 <div class="form-field">
-<label for="eventType">
-        Какое событие
-       </label>
-<select id="eventType" name="eventType" required="">
-<option selected="" value="Свадьба">
-         Свадьба
-        </option>
-<option value="Другой повод">
-         Другой повод
-        </option>
-</select>
-</div>
-<div class="form-field">
-<label for="contact">
-        Как с вами связаться
-       </label>
-<input id="contact" name="contact" placeholder="Telegram, VK или номер телефона" required="" type="text"/>
+<label for="contact">Как с вами связаться</label>
+<input id="contact" name="contact" placeholder="Telegram, ВКонтакте или номер телефона" required="" type="text"/>
 </div>
 <div class="form-footer">
-<p class="form-consent">
-        Нажимая кнопку, вы передаёте данные только для связи по вашей заявке.
-       </p>
-<button class="form-submit" type="submit">
-        Отправить заявку
-       </button>
+<p class="form-consent">Нажимая кнопку, вы передаёте данные только для связи по вашей заявке.</p>
+<button class="form-submit" type="submit">Отправить заявку</button>
 </div>
-<p aria-live="polite" class="form-status" id="briefStatus">
-</p>
+<p aria-live="polite" class="form-status" id="briefStatus"></p>
 </form>
 </div>
 </section>
@@ -2432,7 +2321,7 @@ document.addEventListener('keydown', (event) => {
 );
 const briefForm = document.getElementById('clientBrief');
 const briefStatus = document.getElementById('briefStatus');
-const BRIEF_ENDPOINT = 'https://alex-invite-telegram-proxy.alexredfox156.workers.dev/submit';
+const BRIEF_ENDPOINT = 'https://functions.yandexcloud.net/d4empna8i76pk3ts31lt';
 let briefSubmitting = false;
 briefForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -2441,32 +2330,25 @@ briefForm?.addEventListener('submit', async (event) => {
   const formData = new FormData(briefForm);
   const payload = {
     name: String(formData.get('clientName') || '').trim(),
-    event: String(formData.get('eventType') || 'Свадьба').trim(),
+    event: 'Свадьба',
     contact: String(formData.get('contact') || '').trim(),
     idea: ''
   };
-
   briefSubmitting = true;
   submitButton.disabled = true;
   submitButton.textContent = 'Отправляем…';
   briefStatus.textContent = '';
-
   try {
     const response = await fetch(BRIEF_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-
     let result = {};
     try { result = await response.json(); } catch (_) {}
-
     if (!response.ok || result.ok === false) {
       throw new Error(result.error || 'Не удалось отправить заявку');
     }
-
-    window.aiMetrikaGoal('form_submit', { form: 'wedding', page: window.location.pathname });
-    window.aiMetrikaGoal('form_wedding', { page: window.location.pathname });
     briefForm.reset();
     briefStatus.textContent = 'Спасибо! Заявка отправлена — я свяжусь с вами лично.';
   } catch (error) {

@@ -5,16 +5,17 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>
-   Alex Invite — электронные истории для важных событий
+   Персональный квест-сюрприз — Alex Invite
   </title>
-<meta content="Авторские электронные приглашения, поздравления, предложения руки и сердца и интерактивные сюрпризы." name="description"/>
+<meta content="Персональные цифровые квесты и сюрпризы: идея, сценарий и интерактивный формат под конкретного человека и событие." name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/favicon.png" rel="apple-touch-icon"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="/favicon.png" rel="icon" type="image/png"/>
-<link href="/favicon.png" rel="apple-touch-icon"/>
 <style>
 :root {
+  --soft-brown:#7b5a45;
   --ink:#171310;
   --paper:#fbf8f3;
   --paper2:#f1e8dc;
@@ -255,6 +256,34 @@ button {
   height:1px;
   background:currentColor
 }
+.hero-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:34px
+}
+.hero-cta {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:54px;
+  padding:0 26px;
+  border-radius:999px;
+  background:var(--ink);
+  color:var(--white);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-decoration:none;
+  text-transform:uppercase;
+  box-shadow:0 10px 28px rgba(58,41,32,.08);
+  transition:transform .24s ease,box-shadow .24s ease,background .24s ease
+}
+.hero-cta:hover {
+  transform:translateY(-3px);
+  box-shadow:0 16px 34px rgba(58,41,32,.14);
+  background:var(--dark)
+}
 .author-signature {
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
@@ -462,8 +491,7 @@ button {
   color:#d8bfaa
 }
 .approach-grid {
-  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
-  align-items:center
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)
 }
 .approach-points {
   border-top:1px solid rgba(255,255,255,.18)
@@ -488,7 +516,7 @@ button {
 }
 .approach-point p {
   margin:0;
-  color:#d9cec4;
+  color:#d8bfaa;
   font-size:14px;
   line-height:1.62
 }
@@ -515,7 +543,7 @@ button {
 }
 
 .contact-form-wrap {
-  max-width:860px;
+  width:min(100%,980px);
   margin:42px auto 0;
   padding:34px;
   border:1px solid var(--line);
@@ -919,6 +947,79 @@ button {
     gap:8px
   }
 }
+.approach .approach-point p {
+  color:#d8bfaa;
+}
+#difference .approach-point p {
+  color:#8a664f;
+}
+.case-preview {
+  background:var(--paper2)
+}
+.case-preview-inner {
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(320px,.55fr);
+  gap:80px;
+  align-items:end
+}
+.case-preview-copy {
+  max-width:560px
+}
+.case-preview-copy p {
+  margin:24px 0 0;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.7
+}
+.case-preview-action {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:14px
+}
+.case-preview-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:54px;
+  padding:0 26px;
+  border:1px solid rgba(23,19,16,.16);
+  border-radius:999px;
+  background:var(--ink);
+  color:var(--white);
+  cursor:pointer;
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  transition:transform .24s ease,box-shadow .24s ease,background .24s ease
+}
+.case-preview-button:hover {
+  transform:translateY(-3px);
+  box-shadow:0 16px 34px rgba(58,41,32,.14);
+  background:var(--dark)
+}
+.case-preview-status {
+  min-height:20px;
+  margin:0;
+  color:var(--brown);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  opacity:0;
+  transform:translateY(4px);
+  transition:.22s
+}
+.case-preview-status.is-visible {
+  opacity:1;
+  transform:none
+}
+@media(max-width:900px) {
+  .case-preview-inner {
+    grid-template-columns:1fr;
+    gap:30px
+  }
+}
 /* === Alex Invite responsive system v4 === */
 /* Базовая защита сеток от переполнения */ .shell, .section-inner, .chapter-inner, .closing-inner {
   width:min(1320px,calc(100% - clamp(32px,4vw,64px)));
@@ -1034,12 +1135,22 @@ button {
   }
 }
 @media(min-width:901px) {
-  .author-grid,   .services-head,   .approach-grid {
+  .intro-grid,   .approach-grid,   .case-preview-inner {
     width:min(1180px,100%);
     margin-left:auto;
     margin-right:auto;
+    align-items:center;
   }
-  .author-grid,   .approach-grid,   .services-head {
+  .intro-grid,   .case-preview-inner {
+    grid-template-columns:minmax(0,1fr) minmax(340px,.72fr);
+  }
+  .approach-grid {
+    grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+  }
+  .services-head {
+    width:min(1180px,100%);
+    margin-left:auto;
+    margin-right:auto;
     align-items:center;
   }
   .contact-form-wrap {
@@ -1050,29 +1161,26 @@ button {
   }
 }
 @media(min-width:901px) and (max-width:1180px) {
-  .author-grid {
-    grid-template-columns:minmax(0,.9fr) minmax(300px,.7fr);
+  .intro-grid,   .case-preview-inner {
+    grid-template-columns:minmax(0,1fr) minmax(300px,.72fr);
   }
   .approach-grid {
-    grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+    grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);
   }
-  .services-head p {
-    max-width:400px;
+  .service-item {
+    grid-template-columns:42px minmax(0,1fr) minmax(210px,.8fr) auto;
+    gap:18px;
   }
 }
 @media(max-width:900px) {
-  .author-grid {
-    text-align:left;
-  }
-  .author-copy,   .services-head>div,   .approach-grid>div:first-child {
-    width:100%;
-  }
-  .hero-meta {
-    gap:9px 16px;
+  .case-preview-action {
+    align-items:flex-start;
   }
   .contact-form-wrap {
     width:100%;
-    max-width:none;
+  }
+  .service-item {
+    width:100%;
   }
 }
 /* =========================================================
@@ -1180,7 +1288,7 @@ button {
   }
 }
 
-/* Главная: заголовок блока «Подход» не должен упираться в край колонки. */
+/* Квест: те же правила для двухколоночных смысловых блоков. */
 @media (min-width: 901px) {
   .approach-grid {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -1698,7 +1806,7 @@ button {
       <a class="ai-nav-catalog-item" href="/surprise-quest/">
         <span>05</span>
         <strong>Квест / сюрприз</strong>
-        <small>Открыть</small>
+        <small>Сейчас</small>
       </a>
       </div>
     </div>
@@ -1761,7 +1869,7 @@ button {
     <a class="ai-nav-drawer-link" href="/surprise-quest/">
       <span>05</span>
       <strong>Квест / сюрприз</strong>
-      <small>Открыть</small>
+      <small>Сейчас</small>
     </a>
   </nav>
 
@@ -1774,135 +1882,67 @@ button {
 <main>
 <section class="shell hero">
 <p class="eyebrow">
-     Авторские электронные решения для важных событий
+     Персональный цифровой сценарий для особенного момента
     </p>
 <h1>
-     Истории, которые делают событие
+     Квест-сюрприз, который превращает важный момент в
      <em>
-      личным
+      событие
      </em>
      .
     </h1>
 <p class="hero-lead">
-     Я создаю электронные приглашения, поздравления и интерактивные страницы для разных праздников и поводов — вокруг конкретного человека, пары или вашей общей истории.
+     Расскажите, кого вы хотите удивить и почему это важно. Я разработаю идею, сценарий и цифровой формат, который подойдёт именно этой ситуации.
     </p>
 <div class="hero-meta">
 <span>
-      Индивидуальная концепция
+      Авторская идея
      </span>
 <span>
-      Без готовых шаблонов
+      Персональный сценарий
      </span>
 <span>
-      Личная сборка
+      Интерактивный формат
      </span>
+</div>
+<div class="hero-actions">
+<a class="hero-cta" href="#contact">
+      Создать свою историю
+     </a>
 </div>
 </section>
 <section class="section" id="about">
-<div class="section-inner author-grid">
-<div class="author-copy reveal">
+<div class="section-inner intro-grid">
+<div class="reveal">
 <div class="section-index">
-       01 — Об авторе
+       01 — Основа
       </div>
 <h2 class="section-title">
-       Не студия.
+       Всё начинается
        <br/>
-       Один автор.
+       с человека.
       </h2>
-<div class="intro-copy">
+</div>
+<div class="intro-copy reveal">
 <p>
-        Меня зовут Алексей. Я лично придумываю идею, структуру и подачу каждой страницы — от первого текста до финального интерактива.
-       </p>
+       У каждого сюрприза своя причина появления. Иногда есть только желание удивить, но нет понимания, как именно это сделать.
+      </p>
 <p>
-        Мне важно не просто красиво оформить информацию, а собрать цифровую историю, которая связана с реальными людьми и ощущается частью самого события.
-       </p>
-</div>
-</div>
-<figure class="author-photo reveal">
-<img alt="Алексей — автор проекта Alex Invite за работой" loading="lazy" src="alexey-author.png"/>
-<figcaption>
-       Концепция · тексты · дизайн · сборка
-      </figcaption>
-</figure>
-</div>
-</section>
-<section class="section services-section" id="directions">
-<div class="section-inner">
-<div class="services-head reveal">
-<div>
-<div class="section-index">
-        02 — Направления
-       </div>
-<h2 class="section-title">
-        Для разных событий.
-        <br/>
-        С одним принципом.
-       </h2>
-</div>
-<p>
-       Каждое направление получает собственный сценарий, визуальный язык и механику. Один универсальный шаблон для всех здесь не используется.
+       Я изучаю повод, характер, интересы и особенности человека, чтобы предложить концепцию, которая действительно ему подходит.
       </p>
 </div>
-
-<div class="service-list reveal">
-  <a class="service-item" href="/wedding-invitations/">
-    <span class="service-number">01</span>
-    <strong class="service-name">Свадебные приглашения</strong>
-    <span class="service-description">
-      Персональные сайты, анкеты гостей, закрытые страницы и связанные свадебные системы.
-    </span>
-    <span class="service-status">Открыть</span>
-  </a>
-
-  <a class="service-item is-soon" href="/birthday-invitations/">
-    <span class="service-number">02</span>
-    <strong class="service-name">Приглашения на день рождения</strong>
-    <span class="service-description">
-      Электронные приглашения с атмосферой конкретного праздника, программой и важными деталями.
-    </span>
-    <span class="service-status">Скоро</span>
-  </a>
-
-  <a class="service-item is-soon" href="/digital-greeting/">
-    <span class="service-number">03</span>
-    <strong class="service-name">Электронное поздравление</strong>
-    <span class="service-description">
-      Личная страница из фотографий, текстов, музыки и воспоминаний.
-    </span>
-    <span class="service-status">Скоро</span>
-  </a>
-
-  <a class="service-item is-soon" href="/proposal/">
-    <span class="service-number">04</span>
-    <strong class="service-name">Предложение руки и сердца</strong>
-    <span class="service-description">
-      Цифровая история, которая становится частью самого момента.
-    </span>
-    <span class="service-status">Скоро</span>
-  </a>
-
-  <a class="service-item" href="/surprise-quest/">
-    <span class="service-number">05</span>
-    <strong class="service-name">Квест / сюрприз</strong>
-    <span class="service-description">
-      Интерактивные сценарии, подсказки, скрытые этапы и финал.
-    </span>
-    <span class="service-status">Открыть</span>
-  </a>
-</div>
-
 </div>
 </section>
-<section class="section approach">
+<section class="section approach" id="process">
 <div class="section-inner approach-grid">
 <div class="reveal">
 <div class="section-index">
-       03 — Подход
+       02 — Как создаётся
       </div>
 <h2 class="section-title">
-       Сначала повод.
+       От контекста
        <br/>
-       Потом решение.
+       к сюрпризу.
       </h2>
 </div>
 <div class="approach-points reveal">
@@ -1912,10 +1952,10 @@ button {
        </span>
 <div>
 <strong>
-         Понимаю историю
+         Узнаю контекст
         </strong>
 <p>
-         Кто участвует, что должно произойти и какие эмоции должна оставить страница.
+         Кто этот человек, что ему интересно, какой повод и какую эмоцию хочется вызвать.
         </p>
 </div>
 </div>
@@ -1925,10 +1965,10 @@ button {
        </span>
 <div>
 <strong>
-         Собираю сценарий
+         Разрабатываю идею
         </strong>
 <p>
-         Определяю последовательность, тексты, механику и роль каждого блока.
+         Придумываю направление, сюжет и механику, которые работают именно в этой ситуации.
         </p>
 </div>
 </div>
@@ -1938,21 +1978,190 @@ button {
        </span>
 <div>
 <strong>
-         Создаю цифровую форму
+         Собираю цифровой опыт
         </strong>
 <p>
-         Соединяю дизайн, музыку, фотографии и интерактив в единое впечатление.
+         Соединяю текст, визуал, музыку, фото, видео и интерактив в последовательный сценарий.
         </p>
 </div>
 </div>
 </div>
 </div>
 </section>
+<section class="section services-section" id="directions">
+<div class="section-inner">
+<div class="services-head reveal">
+<div>
+<div class="section-index">
+        03 — Ситуации
+       </div>
+<h2 class="section-title">
+        Когда хочется
+        <br/>
+        удивить.
+       </h2>
+</div>
+<p>
+       Повод может быть любым. Важно не выбрать готовый формат, а понять, для кого и зачем создаётся этот момент.
+      </p>
+</div>
+<div class="service-list reveal">
+<div class="service-item is-soon">
+<span class="service-number">
+        01
+       </span>
+<strong class="service-name">
+        Любимым людям
+       </strong>
+<span class="service-description">
+        День рождения, годовщина, важная дата или сюрприз без повода.
+       </span>
+<span class="service-status">
+        Лично
+       </span>
+</div>
+<div class="service-item is-soon">
+<span class="service-number">
+        02
+       </span>
+<strong class="service-name">
+        Особенный момент
+       </strong>
+<span class="service-description">
+        Предложение руки и сердца или другой момент, которому хочется придать собственный сценарий.
+       </span>
+<span class="service-status">
+        Эмоция
+       </span>
+</div>
+<div class="service-item is-soon">
+<span class="service-number">
+        03
+       </span>
+<strong class="service-name">
+        Важное сообщение
+       </strong>
+<span class="service-description">
+        Беременность, семейная новость или событие, о котором хочется рассказать не обычным сообщением.
+       </span>
+<span class="service-status">
+        Новость
+       </span>
+</div>
+<div class="service-item is-soon">
+<span class="service-number">
+        04
+       </span>
+<strong class="service-name">
+        Семья
+       </strong>
+<span class="service-description">
+        Подарки, поздравления и особенные моменты между родителями, детьми и близкими.
+       </span>
+<span class="service-status">
+        Близкие
+       </span>
+</div>
+<div class="service-item is-soon">
+<span class="service-number">
+        05
+       </span>
+<strong class="service-name">
+        Друзья и коллеги
+       </strong>
+<span class="service-description">
+        Поздравления, общие подарки и сюрпризы, которые хочется запомнить.
+       </span>
+<span class="service-status">
+        Вместе
+       </span>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="difference">
+<div class="section-inner intro-grid">
+<div class="reveal">
+<div class="section-index">
+       04 — Отличие
+      </div>
+<h2 class="section-title">
+       Почему это
+       <br/>
+       работает иначе.
+      </h2>
+</div>
+<div class="approach-points reveal">
+<div class="approach-point">
+<span>
+        01
+       </span>
+<div>
+<strong>
+         Не готовый набор заданий
+        </strong>
+<p>
+         Здесь нет универсального сценария, который подходит всем.
+        </p>
+</div>
+</div>
+<div class="approach-point">
+<span>
+        02
+       </span>
+<div>
+<strong>
+         Механика работает на идею
+        </strong>
+<p>
+         Интерактивные элементы появляются только тогда, когда помогают раскрыть основную идею.
+        </p>
+</div>
+</div>
+<div class="approach-point">
+<span>
+        03
+       </span>
+<div>
+<strong>
+         Формат зависит от человека
+        </strong>
+<p>
+         Он может быть серьёзным, смешным, романтичным, игровым или совершенно неожиданным.
+        </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section case-preview" id="example">
+<div class="section-inner case-preview-inner">
+<div class="reveal case-preview-copy">
+<div class="section-index">
+       05 — Пример работы
+      </div>
+<h2 class="section-title">
+       Only Vika.
+      </h2>
+<p>
+       Личный проект, с которого выросло направление персональных квестов и сюрпризов.
+      </p>
+</div>
+<div class="reveal case-preview-action">
+<button class="case-preview-button" id="casePreviewButton" type="button">
+       Посмотреть пример
+      </button>
+<p aria-live="polite" class="case-preview-status" id="casePreviewStatus">
+       Скоро — пример в разработке.
+      </p>
+</div>
+</div>
+</section>
 <section class="section contact" id="contact">
 <div class="section-inner reveal">
-<div class="section-index">04 — Заявка</div>
-<h2 class="section-title">Оставьте контакт.<br/>Остальное обсудим лично.</h2>
-<p>Без длинной анкеты: имя, повод и удобный способ связи. Я напишу вам лично и спокойно разберусь в задаче.</p>
+<div class="section-index">06 — Заявка</div>
+<h2 class="section-title">Оставьте контакт.<br/>Идею придумаем вместе.</h2>
+<p>Не нужно заранее продумывать сценарий. Напишите, как вас зовут и где с вами связаться — детали спокойно обсудим в переписке.</p>
 <div class="contact-form-wrap">
 <form class="contact-form" id="contactForm">
 <div class="contact-field">
@@ -1960,10 +2169,6 @@ button {
 <input id="clientName" name="clientName" placeholder="Ваше имя" required="" type="text"/>
 </div>
 <div class="contact-field">
-<label for="eventType">Что планируется</label>
-<input id="eventType" name="eventType" placeholder="Свадьба, день рождения, сюрприз…" required="" type="text"/>
-</div>
-<div class="contact-field full">
 <label for="contactValue">Как с вами связаться</label>
 <input id="contactValue" name="contactValue" placeholder="Telegram, ВКонтакте или номер телефона" required="" type="text"/>
 </div>
@@ -1977,12 +2182,8 @@ button {
 <div class="direct-contact">
 <p>Или напишите мне напрямую</p>
 <div aria-label="Социальные сети Alex Invite" class="social-links">
-<a aria-label="Telegram" class="social-link" href="https://t.me/AlexInviteSpb" rel="noopener noreferrer" target="_blank" title="Telegram">
-<svg aria-hidden="true" class="social-icon social-icon-telegram" viewBox="0 0 24 24"><path d="M21.4 3.4 2.9 10.5c-1.3.5-1.3 1.2-.2 1.6l4.7 1.5 1.8 5.5c.2.7.1 1 .8 1 .5 0 .8-.2 1.1-.5l2.6-2.5 5.4 4c1 .5 1.7.2 1.9-.9l3.1-14.9c.3-1.4-.5-2.5-1.7-1.9ZM9 13.2l9.2-5.8c.5-.3.9-.1.6.2l-7.6 6.9-.3 3.5L9 13.2Z"></path></svg><span class="visually-hidden">Telegram</span>
-</a>
-<a aria-label="ВКонтакте" class="social-link" href="https://vk.ru/alexinvite" rel="noopener noreferrer" target="_blank" title="ВКонтакте">
-<svg aria-hidden="true" class="social-icon social-icon-vk" viewBox="0 0 24 24"><path d="M3.3 6.8h3.2c.2 0 .4.1.5.4.7 2.1 1.8 4 3.3 5.5.2.2.4.3.5.2.2-.1.2-.4.2-.8V7.6c0-.6-.1-.8-.6-1.1-.2-.1-.1-.4.2-.5.6-.2 1.7-.3 2.8-.3 1 0 1.2.2 1.2 1v5c0 .5.2.7.4.8.2 0 .4-.1.7-.4 1.4-1.6 2.4-3.5 2.9-5 .1-.3.3-.4.6-.4h3.2c.7 0 .9.3.7.8-.7 1.8-2.3 4-3.4 5.3-.3.4-.3.6 0 1 1 1 2.1 2 2.9 3.2.5.7.2 1.2-.5 1.2h-3c-.5 0-.7-.2-1-.6-.7-.9-1.4-1.7-2.2-2.4-.3-.3-.6-.3-.8-.2-.3.2-.4.5-.4.9v1.4c0 .5-.2.9-.9.9h-1.4c-2.2 0-4.6-1.3-6.6-3.7C4.8 12.6 3.4 10 2.7 7.6c-.2-.5.1-.8.6-.8Z"></path></svg><span class="visually-hidden">ВКонтакте</span>
-</a>
+<a aria-label="Telegram" class="social-link" href="https://t.me/AlexInviteSpb" rel="noopener noreferrer" target="_blank" title="Telegram"><svg aria-hidden="true" class="social-icon social-icon-telegram" viewBox="0 0 24 24"><path d="M21.4 3.4 2.9 10.5c-1.3.5-1.3 1.2-.2 1.6l4.7 1.5 1.8 5.5c.2.7.1 1 .8 1 .5 0 .8-.2 1.1-.5l2.6-2.5 5.4 4c1 .5 1.7.2 1.9-.9l3.1-14.9c.3-1.4-.5-2.5-1.7-1.9ZM9 13.2l9.2-5.8c.5-.3.9-.1.6.2l-7.6 6.9-.3 3.5L9 13.2Z"></path></svg><span class="visually-hidden">Telegram</span></a>
+<a aria-label="ВКонтакте" class="social-link" href="https://vk.ru/alexinvite" rel="noopener noreferrer" target="_blank" title="ВКонтакте"><svg aria-hidden="true" class="social-icon social-icon-vk" viewBox="0 0 24 24"><path d="M3.3 6.8h3.2c.2 0 .4.1.5.4.7 2.1 1.8 4 3.3 5.5.2.2.4.3.5.2.2-.1.2-.4.2-.8V7.6c0-.6-.1-.8-.6-1.1-.2-.1-.1-.4.2-.5.6-.2 1.7-.3 2.8-.3 1 0 1.2.2 1.2 1v5c0 .5.2.7.4.8.2 0 .4-.1.7-.4 1.4-1.6 2.4-3.5 2.9-5 .1-.3.3-.4.6-.4h3.2c.7 0 .9.3.7.8-.7 1.8-2.3 4-3.4 5.3-.3.4-.3.6 0 1 1 1 2.1 2 2.9 3.2.5.7.2 1.2-.5 1.2h-3c-.5 0-.7-.2-1-.6-.7-.9-1.4-1.7-2.2-2.4-.3-.3-.6-.3-.8-.2-.3.2-.4.5-.4.9v1.4c0 .5-.2.9-.9.9h-1.4c-2.2 0-4.6-1.3-6.6-3.7C4.8 12.6 3.4 10 2.7 7.6c-.2-.5.1-.8.6-.8Z"></path></svg><span class="visually-hidden">ВКонтакте</span></a>
 </div>
 </div>
 </div>
@@ -2033,12 +2234,18 @@ document.addEventListener('keydown',e=> {
   }
 }
 );
+const casePreviewButton=document.getElementById('casePreviewButton');
+const casePreviewStatus=document.getElementById('casePreviewStatus');
+casePreviewButton?.addEventListener('click',()=> {
+  casePreviewStatus?.classList.add('is-visible');
+}
+);
 const contactForm=document.getElementById('contactForm');
 const contactStatus=document.getElementById('contactStatus');
 const CONTACT_ENDPOINT='https://functions.yandexcloud.net/d4empna8i76pk3ts31lt';
 contactForm?.addEventListener('submit',async(event)=> {
   event.preventDefault();   if(!contactForm.reportValidity()) return;    const button=contactForm.querySelector('.contact-submit');   if(button.disabled) return;    const formData=new FormData(contactForm);   const payload= {
-    name:String(formData.get('clientName')||'').trim(),     event:String(formData.get('eventType')||'').trim(),     contact:String(formData.get('contactValue')||'').trim(),     idea:''
+    name:String(formData.get('clientName')||'').trim(),     event:'Квест / сюрприз',     contact:String(formData.get('contactValue')||'').trim(),     idea:''
   }
   ;    button.disabled=true;   button.textContent='Отправляем…';   contactStatus.textContent='';    try {
     const response=await fetch(CONTACT_ENDPOINT, {
