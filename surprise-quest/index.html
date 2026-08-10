@@ -2242,15 +2242,12 @@ document.addEventListener('click', function(event) {
       06 — Заявка
      </div>
 <h2 class="section-title">
-      Давайте придумаем
+      Оставьте контакт.
       <br/>
-      ваш сюрприз.
+      Идею обсудим лично.
      </h2>
 <p>
-      Большинство людей приходят не с готовой идеей. Они знают только одно — хотят удивить человека, который им важен.
-      <br/>
-<br/>
-      Несколько вопросов помогут понять ситуацию и предложить подходящую концепцию.
+      Не нужно заранее придумывать сценарий или отвечать на длинную анкету. Оставьте контакт — я сам задам нужные вопросы в переписке.
      </p>
 <div class="contact-form-wrap">
 <form class="contact-form" id="contactForm">
@@ -2261,34 +2258,23 @@ document.addEventListener('click', function(event) {
 <input id="clientName" name="clientName" placeholder="Ваше имя" required="" type="text"/>
 </div>
 <div class="contact-field">
-<label for="recipient">
-         Для кого создаётся сюрприз
+<label for="eventType">
+         Какое событие
         </label>
-<input id="recipient" name="recipient" placeholder="Например: для девушки, сына, родителей" required="" type="text"/>
-</div>
-<div class="contact-field">
-<label for="occasion">
-         Повод
-        </label>
-<input id="occasion" name="occasion" placeholder="День рождения, важная новость, без повода" required="" type="text"/>
-</div>
-<div class="contact-field">
-<label for="age">
-         Возраст человека
-        </label>
-<input id="age" inputmode="numeric" name="age" placeholder="Можно примерно" type="text"/>
-</div>
-<div class="contact-field full">
-<label for="interests">
-         Интересы и увлечения
-        </label>
-<textarea id="interests" name="interests" placeholder="Что любит, чем увлекается, какая музыка, игры, фильмы, хобби или детали характера важны"></textarea>
-</div>
-<div class="contact-field full">
-<label for="finale">
-         Что должно произойти в финале
-        </label>
-<textarea id="finale" name="finale" placeholder="Подарок, новость, встреча, признание или другой финальный момент"></textarea>
+<select id="eventType" name="eventType" required="">
+<option selected="" value="Квест / сюрприз">
+          Квест / сюрприз
+         </option>
+<option value="День рождения">
+          День рождения
+         </option>
+<option value="Важная новость">
+          Важная новость
+         </option>
+<option value="Другой повод">
+          Другой повод
+         </option>
+</select>
 </div>
 <div class="contact-field full">
 <label for="contactValue">
@@ -2394,7 +2380,7 @@ const contactStatus=document.getElementById('contactStatus');
 const CONTACT_ENDPOINT='https://alex-invite-telegram-proxy.alexredfox156.workers.dev/submit';
 contactForm?.addEventListener('submit',async(event)=> {
   event.preventDefault();   if(!contactForm.reportValidity()) return;    const button=contactForm.querySelector('.contact-submit');   if(button.disabled) return;    const formData=new FormData(contactForm);   const payload= {
-    name:String(formData.get('clientName')||'').trim(),     event:'Квест / сюрприз',     contact:String(formData.get('contactValue')||'').trim(),     idea:[       'Для кого: '+String(formData.get('recipient')||'').trim(),       'Повод: '+String(formData.get('occasion')||'').trim(),       'Возраст: '+String(formData.get('age')||'').trim(),       'Интересы: '+String(formData.get('interests')||'').trim(),       'Финал: '+String(formData.get('finale')||'').trim()     ].filter(Boolean).join('\n')
+    name:String(formData.get('clientName')||'').trim(),     event:String(formData.get('eventType')||'Квест / сюрприз').trim(),     contact:String(formData.get('contactValue')||'').trim(),     idea:''
   }
   ;    button.disabled=true;   button.textContent='Отправляем…';   contactStatus.textContent='';    try {
     const response=await fetch(CONTACT_ENDPOINT, {

@@ -2033,12 +2033,12 @@ document.addEventListener('click', function(event) {
       04 — Заявка
      </div>
 <h2 class="section-title">
-      Расскажите о событии.
+      Оставьте контакт.
       <br/>
-      Я свяжусь с вами лично.
+      Остальное обсудим лично.
      </h2>
 <p>
-      Несколько коротких вопросов помогут мне понять задачу и предложить подходящий формат.
+      Без длинной анкеты: имя, повод и удобный способ связи. Я напишу вам лично и спокойно разберусь в задаче.
      </p>
 <div class="contact-form-wrap">
 <form class="contact-form" id="contactForm">
@@ -2081,12 +2081,6 @@ document.addEventListener('click', function(event) {
          Как с вами связаться
         </label>
 <input id="contactValue" name="contactValue" placeholder="Telegram, ВКонтакте или номер телефона" required="" type="text"/>
-</div>
-<div class="contact-field full">
-<label for="requestText">
-         Коротко о вашей идее
-        </label>
-<textarea id="requestText" name="requestText" placeholder="Что планируется и что хочется сделать особенным"></textarea>
 </div>
 <div class="contact-submit-row">
 <p class="contact-note">
@@ -2180,7 +2174,7 @@ const contactStatus=document.getElementById('contactStatus');
 const CONTACT_ENDPOINT='https://alex-invite-telegram-proxy.alexredfox156.workers.dev/submit';
 contactForm?.addEventListener('submit',async(event)=> {
   event.preventDefault();   if(!contactForm.reportValidity()) return;    const button=contactForm.querySelector('.contact-submit');   if(button.disabled) return;    const formData=new FormData(contactForm);   const payload= {
-    name:String(formData.get('clientName')||'').trim(),     event:String(formData.get('eventType')||'').trim(),     contact:String(formData.get('contactValue')||'').trim(),     idea:String(formData.get('requestText')||'').trim()
+    name:String(formData.get('clientName')||'').trim(),     event:String(formData.get('eventType')||'').trim(),     contact:String(formData.get('contactValue')||'').trim(),     idea:''
   }
   ;    button.disabled=true;   button.textContent='Отправляем…';   contactStatus.textContent='';    try {
     const response=await fetch(CONTACT_ENDPOINT, {

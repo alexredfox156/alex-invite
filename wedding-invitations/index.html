@@ -2241,86 +2241,39 @@ document.addEventListener('click', function(event) {
 <div class="section-inner brief-grid">
 <div class="brief-intro reveal">
 <div class="section-index">
-       05 — Анкета
+       05 — Заявка
       </div>
 <h2 class="section-title">
-       Расскажите
+       Оставьте контакт.
        <br/>
-       о вашей паре.
+       Остальное обсудим лично.
       </h2>
 <p>
-       По этой анкете я соберу бесплатную мини-версию приглашения, чтобы вы увидели идею именно для вашей свадьбы.
+       Не нужно заполнять длинную анкету. Напишите, как вас зовут и где с вами связаться — детали свадьбы я уточню уже в переписке.
       </p>
 <div class="brief-note">
-       Без обязательства покупать продолжение
+       Первый шаг — просто начать диалог
       </div>
 </div>
 <form class="brief-form reveal" id="clientBrief">
-<div class="form-row">
 <div class="form-field">
-<label for="partnerOne">
-         Имя жениха
-        </label>
-<input id="partnerOne" name="partnerOne" placeholder="Алексей" required="" type="text"/>
-</div>
-<div class="form-field">
-<label for="partnerTwo">
-         Имя невесты
-        </label>
-<input id="partnerTwo" name="partnerTwo" placeholder="Виктория" required="" type="text"/>
-</div>
-</div>
-<div class="form-row">
-<div class="form-field">
-<label for="weddingDate">
-         Дата свадьбы
-        </label>
-<input id="weddingDate" name="weddingDate" type="date"/>
-</div>
-<div class="form-field">
-<label for="venue">
-         Место проведения
-        </label>
-<input id="venue" name="venue" placeholder="Город, площадка или загородный комплекс" type="text"/>
-</div>
-</div>
-<div class="form-field">
-<label for="interests">
-        Совместные увлечения
+<label for="clientName">
+        Как вас зовут
        </label>
-<textarea id="interests" name="interests" placeholder="Путешествия, музыка, кино, спорт, любимые места, общие традиции…"></textarea>
+<input id="clientName" name="clientName" placeholder="Ваше имя" required="" type="text"/>
 </div>
 <div class="form-field">
-<label for="concept">
-        Концепция свадьбы
+<label for="eventType">
+        Какое событие
        </label>
-<textarea id="concept" name="concept" placeholder="Камерная, классическая, современная, загородная, вечеринка, определённая тематика…"></textarea>
-</div>
-<div class="form-field">
-<label for="colors">
-        Цвета и визуальное настроение
-       </label>
-<input id="colors" name="colors" placeholder="Молочный, чёрный, шоколадный; строго и минималистично" type="text"/>
-</div>
-<div class="form-field">
-<label for="comments">
-        Дополнительные пожелания
-       </label>
-<textarea id="comments" name="comments" placeholder="Расскажите всё, что поможет почувствовать вашу историю: музыка, детали знакомства, идеи или важные ограничения."></textarea>
-</div>
-<div class="form-field form-file-field">
-<label for="visualFiles">
-        Фотографии или примеры
-       </label>
-<div class="file-control">
-<input accept="image/*,.pdf" id="visualFiles" multiple="" name="visualFiles" type="file"/>
-<span class="file-label">
-         Добавить файлы
-        </span>
-</div>
-<p class="field-hint">
-        Можно приложить фотографии пары, декор, приглашения или изображения с подходящим настроением.
-       </p>
+<select id="eventType" name="eventType" required="">
+<option selected="" value="Свадьба">
+         Свадьба
+        </option>
+<option value="Другой повод">
+         Другой повод
+        </option>
+</select>
 </div>
 <div class="form-field">
 <label for="contact">
@@ -2330,10 +2283,10 @@ document.addEventListener('click', function(event) {
 </div>
 <div class="form-footer">
 <p class="form-consent">
-        Нажимая кнопку, вы передаёте данные только для подготовки персональной мини-версии.
+        Нажимая кнопку, вы передаёте данные только для связи по вашей заявке.
        </p>
 <button class="form-submit" type="submit">
-        Отправить анкету
+        Отправить заявку
        </button>
 </div>
 <p aria-live="polite" class="form-status" id="briefStatus">
@@ -2482,47 +2435,48 @@ const briefStatus = document.getElementById('briefStatus');
 const BRIEF_ENDPOINT = 'https://alex-invite-telegram-proxy.alexredfox156.workers.dev/submit';
 let briefSubmitting = false;
 briefForm?.addEventListener('submit', async (event) => {
-  event.preventDefault();    if (briefSubmitting || !briefForm.reportValidity()) return;    const submitButton = briefForm.querySelector('.form-submit');   const files = [...briefForm.querySelector('#visualFiles').files];   const maxFiles = 5;   const maxFileSize = 5 * 1024 * 1024;   const maxTotalSize = 15 * 1024 * 1024;   const allowedTypes = new Set([     'image/jpeg',     'image/png',     'image/webp',     'image/heic',     'image/heif',     'application/pdf'   ]);    if (files.length > maxFiles) {
-    briefStatus.textContent = `Можно приложить не более ${maxFiles} файлов.`;     return;
-  }
-  const oversizedFile = files.find((file) => file.size > maxFileSize);   if (oversizedFile) {
-    briefStatus.textContent = `Файл «${oversizedFile.name}» больше 5 МБ.`;     return;
-  }
-  const unsupportedFile = files.find((file) => !allowedTypes.has(file.type));   if (unsupportedFile) {
-    briefStatus.textContent = `Формат файла «${unsupportedFile.name}» не поддерживается.`;     return;
-  }
-  const totalSize = files.reduce((sum, file) => sum + file.size, 0);   if (totalSize > maxTotalSize) {
-    briefStatus.textContent = 'Общий размер файлов не должен превышать 15 МБ.';     return;
-  }
-  const formData = new FormData(briefForm);    briefSubmitting = true;   submitButton.disabled = true;   submitButton.textContent = files.length ? 'Отправляем файлы…' : 'Отправляем…';   briefStatus.textContent = '';    try {
+  event.preventDefault();
+  if (briefSubmitting || !briefForm.reportValidity()) return;
+  const submitButton = briefForm.querySelector('.form-submit');
+  const formData = new FormData(briefForm);
+  const payload = {
+    name: String(formData.get('clientName') || '').trim(),
+    event: String(formData.get('eventType') || 'Свадьба').trim(),
+    contact: String(formData.get('contact') || '').trim(),
+    idea: ''
+  };
+
+  briefSubmitting = true;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Отправляем…';
+  briefStatus.textContent = '';
+
+  try {
     const response = await fetch(BRIEF_ENDPOINT, {
-      method: 'POST',       body: formData
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    let result = {};
+    try { result = await response.json(); } catch (_) {}
+
+    if (!response.ok || result.ok === false) {
+      throw new Error(result.error || 'Не удалось отправить заявку');
     }
-    );      let result = {
-    }
-    ;     try {
-      result = await response.json();
-    }
-    catch (_) {
-      result = {
-      }
-      ;
-    }
-    if (!response.ok || !result.ok) {
-      throw new Error(result.error || 'Не удалось отправить анкету');
-    }
+
     window.aiMetrikaGoal('form_submit', { form: 'wedding', page: window.location.pathname });
     window.aiMetrikaGoal('form_wedding', { page: window.location.pathname });
-    briefForm.reset();     briefStatus.textContent = files.length       ? `Спасибо! Анкета и ${files.length} файл(а) отправлены. Я свяжусь с вами после подготовки идеи.`       : 'Спасибо! Анкета отправлена. Я свяжусь с вами после подготовки идеи.';
+    briefForm.reset();
+    briefStatus.textContent = 'Спасибо! Заявка отправлена — я свяжусь с вами лично.';
+  } catch (error) {
+    briefStatus.textContent = error.message || 'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной напрямую.';
+  } finally {
+    briefSubmitting = false;
+    submitButton.disabled = false;
+    submitButton.textContent = 'Отправить заявку';
   }
-  catch (error) {
-    briefStatus.textContent = error.message || 'Не удалось отправить анкету. Попробуйте ещё раз или свяжитесь со мной напрямую.';
-  }
-  finally {
-    briefSubmitting = false;     submitButton.disabled = false;     submitButton.textContent = 'Отправить анкету';
-  }
-}
-);
+});
 document.querySelectorAll('.social-link.is-pending').forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();
